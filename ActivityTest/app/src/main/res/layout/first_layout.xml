@@ -11,4 +11,28 @@
         android:layout_height="wrap_content"
         android:text="Button 1"/>
 
+    <EditText
+        android:id="@+id/edit_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="type something here"
+        android:maxLines="2"/>
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button4"/>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"/>
+
+    <ProgressBar
+        android:id="@+id/p_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"/>
+
 </LinearLayout>

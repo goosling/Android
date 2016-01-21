@@ -1,6 +1,8 @@
 package com.example.joe.activitytest;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,16 +11,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 /**
  * Created by joe on 2016/1/17.
  */
 public class FirstActivity extends Activity{
+
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
+        Log.d("FirstActivity", this.toString());
         //隐藏任务栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -50,9 +58,63 @@ public class FirstActivity extends Activity{
 
                 //向下一个活动传入数据
                 String data = "firstActivity";
+                //Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                // intent.putExtra("extra_data", data);
                 Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
-                intent.putExtra("extra_data", data);
                 startActivity(intent);
+                SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
+            }
+        });
+
+        final EditText editText = (EditText)findViewById(R.id.edit_text1);
+
+        final ImageView imageView = (ImageView)findViewById(R.id.imageView);
+
+        progressBar = (ProgressBar)findViewById(R.id.p_bar);
+
+        Button button4 = (Button)findViewById(R.id.button4);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.button4:
+                        String inputText = editText.getText().toString();
+                        Toast.makeText(FirstActivity.this, inputText, Toast.LENGTH_SHORT).show();
+                        imageView.setImageResource(R.drawable.ascii_dora);
+
+                        if(progressBar.getVisibility() == View.GONE) {
+                            progressBar.setVisibility(View.VISIBLE);
+                        }else {
+                            progressBar.setVisibility(View.GONE);
+                        }
+
+                        int progress = progressBar.getProgress();
+                        progress += 10;
+                        progressBar.setProgress(progress);
+
+                        //AlertDialog
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(FirstActivity.this);
+                        alertDialog.setTitle("This is a dialog");
+                        alertDialog.setMessage("Something important");
+                        alertDialog.setCancelable(false);
+                        alertDialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        alertDialog.setNegativeButton("cancel",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        alertDialog.show();
+
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }
