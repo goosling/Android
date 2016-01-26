@@ -4,13 +4,9 @@
               android:layout_height="match_parent">
     
     <fragment
-        android:id="@+id/left_fragment"
-        android:name="fragmentTest.LeftFragment"
+        android:id="@+id/news_title_fragment"
+        android:name="com.example.joe.fragmentbestpractice.NewsTitleFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
-
-
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
