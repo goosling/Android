@@ -48,6 +48,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <receiver android:name=".MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="MY_BROADCAST"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
