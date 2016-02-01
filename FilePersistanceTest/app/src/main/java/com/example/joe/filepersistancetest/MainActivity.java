@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             edit.setText(inputText);
             //将输入光标移到结尾继续输入
             edit.setSelection(inputText.length());
-            Toast.makeText(this, "Restoring succedd", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Restoring succeed", Toast.LENGTH_SHORT).show();
         }
     }
 
