@@ -3,7 +3,6 @@ package DatabaseTest;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 /**
  * Created by JOE on 2016/2/2.
@@ -14,7 +13,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             +"author text,"
             +"price real,"
             +"pages integer,"
-            +"name text)";
+            +"name text,"
+            +"category_id integer)";
+
+    public static final String CREATE_CATEGORY = "create table Category ("
+            + "id integer primary key autoincrement, "
+            + "category_name text, "
+            + "category_code integer)";
 
     private Context myContext;
 
@@ -26,11 +31,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_BOOK);
-        Toast.makeText(myContext, "create succeed", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(myContext, "create succeed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        switch (oldVersion) {
+            case 1:
+                db.execSQL(CREATE_CATEGORY);
+            case 2:
+                db.execSQL("alter table Book add column category_id integer");
+            default:
+        }
     }
 }

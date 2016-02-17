@@ -30,6 +30,9 @@
                 </action>
             </intent-filter>
         </receiver>
+        <provider
+            android:authorities="com.example.joe.databasetest.provider"
+            android:name="com.example.joe.databasetest.DatabaseProvider"/>
     </application>
 
 </manifest>
