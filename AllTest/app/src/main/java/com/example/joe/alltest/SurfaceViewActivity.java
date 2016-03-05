@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -132,8 +133,8 @@ public class SurfaceViewActivity extends Activity {
     }
 
     protected void play(final int msec) {
-        String path = et_path.getText().toString().trim();
-        File file = new File(path);
+        String path = "yanyuan.mp4";
+        File file = new File(Environment.getExternalStorageDirectory(), path);
         if(!file.exists()) {
             Toast.makeText(this, "视频文件错误", Toast.LENGTH_SHORT).show();
             return;
