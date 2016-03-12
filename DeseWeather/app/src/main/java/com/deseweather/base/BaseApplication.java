@@ -4,14 +4,16 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 
+import com.deseweather.common.CrashHandler;
+
 /**
  * Created by JOE on 2016/3/11.
  */
 public class BaseApplication extends Application {
 
-    private static String cacheDir = "";
+    public static String cacheDir = "";
 
-    private static Context mAppContext = null;
+    public static Context mAppContext = null;
 
     @Override
     public void onCreate() {

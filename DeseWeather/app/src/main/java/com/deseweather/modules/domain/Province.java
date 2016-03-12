@@ -7,9 +7,9 @@ import java.io.Serializable;
  */
 public class Province implements Serializable {
 
-    private String proName;
+    public String proName;
 
-    private int proSort;
+    public int proSort;
 
     public String getProName() {
         return proName;

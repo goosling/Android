@@ -7,8 +7,8 @@ import java.io.Serializable;
  */
 public class City implements Serializable {
 
-    private String cityName;
-    private int provinceID;
+    public String cityName;
+    public int provinceID;
 
     public int getProvinceID() {
         return provinceID;
