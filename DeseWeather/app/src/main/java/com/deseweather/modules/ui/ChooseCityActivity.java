@@ -58,6 +58,11 @@ public class ChooseCityActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice_city);
+
+
+
+
+
         mDBManager = new DBManager(this);
         mDBManager.openDatabase();
         mWeatherDB = new WeatherDB(this);

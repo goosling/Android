@@ -18,11 +18,20 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by JOE on 2016/3/4.
  */
 public class DrawPicture extends Activity {
 
+    @Bind(R.id.resume)
+    Button resume;
+    @Bind(R.id.save)
+    Button save;
+    @Bind(R.id.iv_canvas)
+    ImageView ivCanvas;
     private Button btn_save, btn_resume;
     private ImageView iv_canvas;
     private final static String TAG = "drawPicture";
@@ -34,15 +43,16 @@ public class DrawPicture extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.canvas_layout);
+        ButterKnife.bind(this);
 
         //初始化paint
         paint = new Paint();
         paint.setStrokeWidth(5);
         paint.setColor(Color.RED);
 
-        iv_canvas = (ImageView)findViewById(R.id.iv_canvas);
-        btn_resume = (Button)findViewById(R.id.resume);
-        btn_save = (Button)findViewById(R.id.save);
+        iv_canvas = (ImageView) findViewById(R.id.iv_canvas);
+        btn_resume = (Button) findViewById(R.id.resume);
+        btn_save = (Button) findViewById(R.id.save);
 
         btn_resume.setOnClickListener(click);
         btn_save.setOnClickListener(click);
@@ -58,7 +68,7 @@ public class DrawPicture extends Activity {
             switch (event.getAction()) {
                 //用户按下动作
                 case MotionEvent.ACTION_DOWN:
-                    if(baseBitmap == null) {
+                    if (baseBitmap == null) {
                         baseBitmap = Bitmap.createBitmap(iv_canvas.getWidth(),
                                 iv_canvas.getHeight(), Bitmap.Config.ARGB_8888);
                         canvas = new Canvas(baseBitmap);
@@ -96,7 +106,7 @@ public class DrawPicture extends Activity {
     private View.OnClickListener click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch(v.getId()) {
+            switch (v.getId()) {
                 case R.id.save:
                     saveBitmap();
                     break;
@@ -111,18 +121,19 @@ public class DrawPicture extends Activity {
 
     //保存图片到sd卡上
     protected void saveBitmap() {
-        try{
+        try {
             File file = new File(Environment.getExternalStorageDirectory(),
-                    System.currentTimeMillis()+".png");
+                    System.currentTimeMillis() + ".png");
             FileOutputStream fos = new FileOutputStream(file);
             baseBitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            Toast.makeText(DrawPicture.this, "保存图片成功",Toast.LENGTH_SHORT).show();;
+            Toast.makeText(DrawPicture.this, "保存图片成功", Toast.LENGTH_SHORT).show();
+            ;
 
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_MEDIA_MOUNTED);
             intent.setData(Uri.fromFile(Environment.getExternalStorageDirectory()));
             sendBroadcast(intent);
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -130,13 +141,16 @@ public class DrawPicture extends Activity {
     //清除画板
     protected void resumeCanvas() {
         //手动清除画板的图，重构一个画板
-        if(baseBitmap != null ) {
+        if (baseBitmap != null) {
             baseBitmap = Bitmap.createBitmap(iv_canvas.getWidth(),
                     iv_canvas.getHeight(), Bitmap.Config.ARGB_8888);
             canvas = new Canvas(baseBitmap);
             canvas.drawColor(Color.WHITE);
             iv_canvas.setImageBitmap(baseBitmap);
-            Toast.makeText(DrawPicture.this, "清除画板成功，可以重新画图", Toast.LENGTH_SHORT).show();;
+            Toast.makeText(DrawPicture.this, "清除画板成功，可以重新画图", Toast.LENGTH_SHORT).show();
+            ;
         }
-     }
+    }
+
+
 }
