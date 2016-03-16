@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.example.joe.alltest.R;
+import com.example.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

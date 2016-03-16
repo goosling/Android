@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.joe.alltest.R;
+import com.example.guolinTest.R;
 
 import java.lang.reflect.Field;
 

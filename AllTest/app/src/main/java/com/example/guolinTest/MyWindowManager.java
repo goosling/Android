@@ -7,7 +7,7 @@ import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.example.joe.alltest.R;
+import com.example.guolinTest.R;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
