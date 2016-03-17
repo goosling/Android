@@ -110,7 +110,7 @@ public class SlidingSwitcherView extends RelativeLayout implements View.OnTouchL
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        createVelocityTracker();
+        createVelocityTracker(event);
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 xDown = event.getRawX();
@@ -303,7 +303,11 @@ public class SlidingSwitcherView extends RelativeLayout implements View.OnTouchL
                 }
                 publishProgress(leftMargin);
                 // 为了要有滚动效果产生，每次循环使线程睡眠10毫秒，这样肉眼才能够看到滚动动画。
-                sleep(10);
+                try{
+                    Thread.sleep(10);
+                }catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             return leftMargin;
         }
