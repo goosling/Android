@@ -103,7 +103,7 @@ public class PhotoWallAdapter extends ArrayAdapter<String> implements AbsListVie
         if (scrollState == SCROLL_STATE_IDLE) {
             loadBitmaps(mFirstVisibleItem, mItemVisibleCount);
         } else {
-            cacelAllTasks();
+            cancelAllTasks();
         }
     }
 
@@ -150,7 +150,7 @@ public class PhotoWallAdapter extends ArrayAdapter<String> implements AbsListVie
     /**
      * 取消所有正在下载或等待下载的任务。
      */
-    public void cacelAllTasks() {
+    public void cancelAllTasks() {
         if(taskCollection != null) {
             for(BitmapWorkerTask task : taskCollection) {
                 task.cancel(false);
