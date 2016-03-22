@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<View.BidirSlidingLayout
+<PrivateView.BidirSlidingLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bidir_sliding_layout"
@@ -57,4 +57,4 @@
 
 
 
-</View.BidirSlidingLayout>
+</PrivateView.BidirSlidingLayout>

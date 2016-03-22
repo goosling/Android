@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import View.BidirSlidingLayout;
+import PrivateView.BidirSlidingLayout;
 
 public class MainActivity extends Activity {
 
