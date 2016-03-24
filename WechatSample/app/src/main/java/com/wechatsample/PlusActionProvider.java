@@ -9,7 +9,7 @@ import android.view.View;
 /**
  * Created by JOE on 2016/3/23.
  */
-public class PlusActionProvider extends ActionProvider {
+public abstract class PlusActionProvider extends ActionProvider {
     private Context context;
 
     public PlusActionProvider(Context context) {
