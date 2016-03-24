@@ -5,7 +5,12 @@
     
     <GridView
         android:id="@+id/photo_wall"
-        android:columnWidth=""
+        android:columnWidth="@dimen/image_thumbnail_size"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/image_thumbnail_spacing"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/image_thumbnail_spacing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></GridView>
 
