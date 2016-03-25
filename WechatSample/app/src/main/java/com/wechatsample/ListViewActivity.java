@@ -22,4 +22,9 @@ public class ListViewActivity extends Activity {
         ImageAdapter adapter = new ImageAdapter(this, 0, Images.imageThumbUrls);
         listView.setAdapter(adapter);
     }
+
+    @Override
+    public boolean hasWindowFocus() {
+        return super.hasWindowFocus();
+    }
 }
