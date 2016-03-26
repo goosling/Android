@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="auto_play" forMymat="boolean" />
+
+    <declare-styleable name="SlidingSwitcherView">
+        <attr name="auto_play" />
+    </declare-styleable>
+</resources>

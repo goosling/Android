@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wechatsample.MainActivity">
+
+    <item
+        android:id="@+id/action_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:title="搜索"/>
+
+    <item
+        android:id="@+id/action_plus"
+        android:actionProviderClass="com.wechatsample.PlusActionProvider"
+        android:icon="@mipmap/ic_launcher"
+        app:showAsAction="ifRoom"
+        android:title="add"/>
+
+    <item
+        android:id="@+id/action_album"
+        android:icon="@mipmap/ic_launcher"
+        android:title="album"/>
+
+    <item
+        android:id="@+id/action_collection"
+        android:icon="@mipmap/ic_launcher"
+        android:title="collection"/>
+
+    <item
+        android:id="@+id/action_card"
+        android:icon="@mipmap/ic_launcher"
+        android:title="card"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@mipmap/ic_launcher"
+        android:title="settings"
+        />
+
+    <item
+        android:id="@+id/action_feed"
+        android:icon="@mipmap/ic_launcher"
+        android:title="feed"/>
+
+</menu>
