@@ -14,16 +14,11 @@ import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity {
 
-    private TabPageIndicator mIndicator;
-
-    private ViewPager mViewPager;
-
-    private FragmentPagerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.image_3d_layout);
 
     }
 
