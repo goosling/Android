@@ -14,6 +14,6 @@ public class VolleyTest {
     }
 
     public static RequestQueue newRequestQueue(Context context, HttpStack stack) {
-        
+
     }
 }

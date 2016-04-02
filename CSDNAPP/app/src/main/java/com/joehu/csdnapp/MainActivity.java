@@ -22,6 +22,18 @@ public class MainActivity extends FragmentActivity {
 
     }
 
+    //自动释放资源
 
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        switch(level) {
+            case TRIM_MEMORY_UI_HIDDEN:
+                //进行资源释放操作
+                
+                break;
+        }
+    }
 }
 
