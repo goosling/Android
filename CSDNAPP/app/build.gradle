@@ -26,4 +26,6 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     compile files('libs/jsoup-1.8.3.jar')
     compile files('libs/volley.jar')
+    compile project(':library')
+    compile project(':csdnspider')
 }
