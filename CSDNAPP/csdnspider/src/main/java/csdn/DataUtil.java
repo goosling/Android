@@ -1,5 +1,6 @@
 package csdn;
 
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -20,6 +21,22 @@ public class DataUtil {
             connection.setConnectTimeout(5000);
             connection.setDoInput(true);
             connection.setDoOutput(true);
+
+            if(connection.getResponseCode() == 200) {
+                InputStream in = connection.getInputStream();
+                int len = 0;
+                byte[] buf = new byte[2014];
+
+                while((len = in.read(buf)) != -1) {
+                    sb.append(new String(buf, 0, len, "UTF-8"));
+                }
+                in.close();
+            }else {
+                throw new CommonException("访问网络失败");
+            }
+        }catch (Exception e) {
+            throw new CommonException("访问网络失败");
         }
+        return sb.toString();
     }
 }
