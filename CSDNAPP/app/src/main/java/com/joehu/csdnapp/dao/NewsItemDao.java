@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.NewsItem;
-
 /**
  * Created by joe on 2016/4/12.
  */

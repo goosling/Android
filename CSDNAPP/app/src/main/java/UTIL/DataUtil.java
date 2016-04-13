@@ -5,8 +5,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import bean.CommonException;
-
 /**
  * Created by joehu on 2016/3/29.
  */

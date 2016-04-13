@@ -1,7 +1,5 @@
 package UTIL;
 
-import bean.Constaint;
-
 /**
  * Created by joehu on 2016/3/29.
  */
