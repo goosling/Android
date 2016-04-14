@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/libs/butterknife-5.0.0.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/libs/gson-2.2.4.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/libs/listviewanimations-2.6.0.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/libs/nineoldandroids-2.4.0.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/libs/photoviewlibrary.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/libs/universal-image-loader-1.9.1.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/libs/volley.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ab_texture_tile.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/bg.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_action_overflow.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_back_holo_light.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_drawer.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_refresh.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/listitem_feed_bg.9.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/listitem_feed_pressed.9.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/shadow_bottom.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/shadow_left.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/shadow_right.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/wave.png" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
