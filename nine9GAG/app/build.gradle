@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
     compile files('libs/butterknife-5.0.0.jar')
+    compile 'com.romainpiel.shimmer:library:1.4.0@aar'
 }
