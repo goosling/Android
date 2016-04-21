@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012-2013, Michael Yang 杨福�? (www.yangfuhai.com).
+ * Copyright (c) 2012-2013, Michael Yang 杨福�? (www.yangfuhai.com).
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @author Michael Yang（www.yangfuhai.com�? update at 2013.08.07
+ * @author Michael Yang（www.yangfuhai.com�? update at 2013.08.07
  */
 public class ACache {
     public static final int TIME_HOUR = 60 * 60;
@@ -77,9 +77,9 @@ public class ACache {
     }
 
 
-    public static ACache get(Context ctx, long max_zise, int max_count) {
+    public static ACache get(Context ctx, long max_size, int max_count) {
         File f = new File(BaseApplication.cacheDir, "Data");
-        return get(f, max_zise, max_count);
+        return get(f, max_size, max_count);
     }
 
 
@@ -111,7 +111,7 @@ public class ACache {
 
 
     /**
-     * 保存 String数据 �? 缓存�?
+     * 保存 String数据 �? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的String数据
@@ -139,7 +139,7 @@ public class ACache {
 
 
     /**
-     * 保存 String数据 �? 缓存�?
+     * 保存 String数据 �? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的String数据
@@ -195,7 +195,7 @@ public class ACache {
 
 
     /**
-     * 保存 JSONObject数据 �? 缓存�?
+     * 保存 JSONObject数据 �? 缓存�?
      *  @param key 保存的key
      * @param value 保存的JSON数据
      */
@@ -205,7 +205,7 @@ public class ACache {
 
 
     /**
-     * 保存 JSONObject数据 �? 缓存�?
+     * 保存 JSONObject数据 �? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的JSONObject数据
@@ -238,7 +238,7 @@ public class ACache {
 
 
     /**
-     * 保存 JSONArray数据 �? 缓存�?
+     * 保存 JSONArray数据 �? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的JSONArray数据
@@ -249,7 +249,7 @@ public class ACache {
 
 
     /**
-     * 保存 JSONArray数据 �? 缓存�?
+     * 保存 JSONArray数据 �? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的JSONArray数据
@@ -282,10 +282,10 @@ public class ACache {
 
 
     /**
-     * 保存 byte数据 �? 缓存�?
+     * 保存 byte数据 �? 缓存�?
      *
      * @param key 保存的key
-     * @param value 保存的数�?
+     * @param value 保存的数�?
      */
     public void put(String key, byte[] value) {
         File file = mCache.newFile(key);
@@ -310,10 +310,10 @@ public class ACache {
 
 
     /**
-     * 保存 byte数据 �? 缓存�?
+     * 保存 byte数据 �? 缓存�?
      *
      * @param key 保存的key
-     * @param value 保存的数�?
+     * @param value 保存的数�?
      * @param saveTime 保存的时间，单位：秒
      */
     public void put(String key, byte[] value, int saveTime) {
@@ -358,12 +358,12 @@ public class ACache {
     }
 
     // =======================================
-    // ============= 序列�? 数据 读写 ===============
+    // ============= 序列�? 数据 读写 ===============
     // =======================================
 
 
     /**
-     * 保存 Serializable数据 �? 缓存�?
+     * 保存 Serializable数据 �? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的value
@@ -374,7 +374,7 @@ public class ACache {
 
 
     /**
-     * 保存 Serializable数据�? 缓存�?
+     * 保存 Serializable数据�? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的value
@@ -445,7 +445,7 @@ public class ACache {
 
 
     /**
-     * 保存 bitmap �? 缓存�?
+     * 保存 bitmap �? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的bitmap数据
@@ -456,10 +456,10 @@ public class ACache {
 
 
     /**
-     * 保存 bitmap �? 缓存�?
+     * 保存 bitmap �? 缓存�?
      *
      * @param key 保存的key
-     * @param value 保存�? bitmap 数据
+     * @param value 保存�? bitmap 数据
      * @param saveTime 保存的时间，单位：秒
      */
     public void put(String key, Bitmap value, int saveTime) {
@@ -485,7 +485,7 @@ public class ACache {
 
 
     /**
-     * 保存 drawable �? 缓存�?
+     * 保存 drawable �? 缓存�?
      *
      * @param key 保存的key
      * @param value 保存的drawable数据
@@ -496,10 +496,10 @@ public class ACache {
 
 
     /**
-     * 保存 drawable �? 缓存�?
+     * 保存 drawable �? 缓存�?
      *
      * @param key 保存的key
-     * @param value 保存�? drawable 数据
+     * @param value 保存�? drawable 数据
      * @param saveTime 保存的时间，单位：秒
      */
     public void put(String key, Drawable value, int saveTime) {
@@ -523,7 +523,7 @@ public class ACache {
     /**
      * 获取缓存文件
      *
-     * @return value 缓存的文�?
+     * @return value 缓存的文�?
      */
     public File file(String key) {
         File f = mCache.newFile(key);
@@ -543,7 +543,7 @@ public class ACache {
 
 
     /**
-     * 清除�?有数�?
+     * 清除�?有数�?
      */
     public void clear() {
         mCache.clear();
@@ -551,9 +551,9 @@ public class ACache {
 
 
     /**
-     * @author 杨福海（michael�? www.yangfuhai.com
+     * @author 杨福海（michael�? www.yangfuhai.com
      * @version 1.0
-     * @title 缓存管理�?
+     * @title 缓存管理�?
      */
     public class ACacheManager {
         private final AtomicLong cacheSize;
@@ -695,9 +695,9 @@ public class ACache {
     }
 
     /**
-     * @author 杨福海（michael�? www.yangfuhai.com
+     * @author 杨福海（michael�? www.yangfuhai.com
      * @version 1.0
-     * @title 时间计算工具�?
+     * @title 时间计算工具�?
      */
     private static class Utils {
 
@@ -810,7 +810,7 @@ public class ACache {
 
 
         /*
-         * Bitmap �? byte[]
+         * Bitmap �? byte[]
          */
         private static byte[] Bitmap2Bytes(Bitmap bm) {
             if (bm == null) {
@@ -823,7 +823,7 @@ public class ACache {
 
 
         /*
-         * byte[] �? Bitmap
+         * byte[] �? Bitmap
          */
         private static Bitmap Bytes2Bimap(byte[] b) {
             if (b.length == 0) {
@@ -834,32 +834,32 @@ public class ACache {
 
 
         /*
-         * Drawable �? Bitmap
+         * Drawable �? Bitmap
          */
         private static Bitmap drawable2Bitmap(Drawable drawable) {
             if (drawable == null) {
                 return null;
             }
-            // �? drawable 的长�?
+            // �? drawable 的长�?
             int w = drawable.getIntrinsicWidth();
             int h = drawable.getIntrinsicHeight();
-            // �? drawable 的颜色格�?
+            // �? drawable 的颜色格�?
             Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE
                                    ? Bitmap.Config.ARGB_8888
                                    : Bitmap.Config.RGB_565;
             // 建立对应 bitmap
             Bitmap bitmap = Bitmap.createBitmap(w, h, config);
-            // 建立对应 bitmap 的画�?
+            // 建立对应 bitmap 的画�?
             Canvas canvas = new Canvas(bitmap);
             drawable.setBounds(0, 0, w, h);
-            // �? drawable 内容画到画布�?
+            // �? drawable 内容画到画布�?
             drawable.draw(canvas);
             return bitmap;
         }
 
 
         /*
-         * Bitmap �? Drawable
+         * Bitmap �? Drawable
          */
         @SuppressWarnings("deprecation") private static Drawable bitmap2Drawable(Bitmap bm) {
             if (bm == null) {
