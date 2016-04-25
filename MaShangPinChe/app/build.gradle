@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.example.joe.mashangpinche"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
+    compile files('libs/armeabi/Android_Location_V1.0.5.jar')
+    compile files('libs/armeabi/Android_Map_2.2.0.jar')
+    compile files('libs/armeabi/Android_Services_2.2.0.jar')
+    compile files('libs/armeabi/opencsv.jar')
+    compile files('libs/armeabi/simple-xml-2.6.9.jar')
+    compile files('libs/armeabi/spring-android-core-1.0.1.RELEASE.jar')
+    compile files('libs/armeabi/spring-android-rest-template-1.0.1.RELEASE.jar')
+    compile files('libs/simple-xml-2.6.9.jar')
+    compile files('libs/opencsv.jar')
+    compile files('libs/Android_Services_2.2.0.jar')
+    compile files('libs/Android_Map_2.2.0.jar')
+    compile files('libs/Android_Location_V1.0.5.jar')
+    compile files('libs/spring-android-rest-template-1.0.1.RELEASE.jar')
+    compile files('libs/spring-android-core-1.0.1.RELEASE.jar')
+}

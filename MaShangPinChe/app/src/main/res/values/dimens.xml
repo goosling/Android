@@ -1,0 +1,141 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--  button default -->
+    <dimen name="bt_corner_radius">12dp</dimen>
+    <dimen name="bt_text_size">18sp</dimen>
+    <dimen name="bt_padding_top">0dp</dimen>
+    <dimen name="bt_padding_left">0dp</dimen>
+    <dimen name="bt_height_default">36dp</dimen>
+
+    <!-- auto complete edit text -->
+    <dimen name="actv_paddingLeft">12dp</dimen>
+    <dimen name="actv_paddingRight">12dp</dimen>
+    <dimen name="actv_paddingBottom">0dp</dimen>
+    <dimen name="actv_paddingTop">0dp</dimen>
+    <dimen name="actv_text_size">16sp</dimen>
+
+
+    <!-- login页面 -->
+    <dimen name="login_bt_margin_to_screen_center">20dp</dimen>
+    <dimen name="login_bt_margin_to_bottom">4dp</dimen>
+    <dimen name="login_bt_margin_to_screen_side">32dp</dimen>
+
+    <!-- registerstep1页面 -->
+    <dimen name="rstep1_margin_to_screen_side">12dp</dimen>
+    <dimen name="rstep1_margin_to_top">24dp</dimen>
+
+    <!-- registerstep2页面 -->
+    <dimen name="rstep2_bt_margin_to_screen_center">32dp</dimen>
+    <dimen name="rstep2_bt_margin_to_screen_side">32dp</dimen>
+    <dimen name="rstep2_margin_to_screen_side">12dp</dimen>
+    <dimen name="rstep2_margin_to_top">12dp</dimen>
+
+    <!--  Iwant 页面 -->
+    <dimen name="iwant_search_bt_width">72dp</dimen>
+    <dimen name="iwant_search_bt_height">32dp</dimen>
+    <dimen name="iwant_margin_to_screen_side">5dp</dimen>
+    <dimen name="iwant_margin_to_map">5dp</dimen>
+    <dimen name="iwant_margin_to_search">5dp</dimen>
+    <dimen name="iwant_margin_to_control">12dp</dimen>
+    <dimen name="iwant_margin_to_screen_bottom">10dp</dimen>
+    <dimen name="iwant_bt_margin_to_screen_center">32dp</dimen>
+    <!-- 跟搜索按钮高度一致 -->
+    <dimen name="iwant_bt_margin_to_screen_side">32dp</dimen>
+    <dimen name="iwant_actv_height">32dp</dimen>
+    <dimen name="iwant_margin_to_actv">10dp</dimen>
+    <item name="iwant_rb_text_size" type="dimen" format="float">16.0</item>
+    <dimen name="iwant_tv_comm_dest_text_size">12sp</dimen>
+
+
+    <!-- iwant页面地图提示信息左右两边的padding -->
+    <dimen name="iwant_tv_paddingSide">16dp</dimen>
+    <!-- iwant页面地图提示信息下边的padding -->
+    <dimen name="iwant_tv_paddingBottom">10dp</dimen>
+    <!-- iwant页面地图提示信息上边的padding -->
+    <dimen name="iwant_tv_paddingTop">5dp</dimen>
+
+    <!-- main infowindow相关 -->
+    <dimen name="main_infowindow_bt_width">96dp</dimen>
+    <dimen name="main_infowindow_bt_height">32dp</dimen>
+    <dimen name="main_infowindow_portrait_width">96dp</dimen>
+    <dimen name="main_infowindow_portrait_height">96dp</dimen>
+    <dimen name="main_infowindow_tv_width">128dp</dimen>
+    <dimen name="main_infowindow_bt_margin_to_another">10dp</dimen>
+
+    <item name="main_infowindow_iv_corner_radius_float" type="dimen" format="float">18.0</item>
+    <dimen name="main_infowindow_bt_text_size">16sp</dimen>
+    <dimen name="main_infowindow_bt_padding">2dp</dimen>
+    <dimen name="main_infowindow_bt_drawable_padding">0dp</dimen>
+    <dimen name="main_infowindow_info_margin_to_portrait">10dp</dimen>
+    <dimen name="main_infowindow_margin_top">10dp</dimen>
+    <dimen name="main_infowindow_margin_left">10dp</dimen>
+    <dimen name="main_infowindow_margin_bottom">10dp</dimen>
+    <dimen name="main_infowindow_margin_right">10dp</dimen>
+    <dimen name="main_infowindow_margin_to_iv">24dp</dimen>
+
+    <!-- main hpicker相关 -->
+    <!-- mask的宽度 , 这个宽度不能大于main_hpicker_subview_margin-->
+    <dimen name="main_hpicker_mask_border_width">4dp</dimen>
+    <!-- 背景色的圆角值。 -->
+    <dimen name="main_hpicker_bg_corner_radius">8dp</dimen>
+    <!-- mask的圆角值-->
+    <dimen name="main_hpicker_mask_corner_radius">12dp</dimen>
+    <!-- 默认头像的圆角值-->
+    <dimen name="main_hpicker_subview_corner_radius">6dp</dimen>
+    <!-- 用于用户自己的头像，在程序中将矩形转换为圆角，需要用float类型 -->
+    <item name="main_hpicker_iv_corner_radius_float" type="dimen" format="float">10.0</item>
+    <dimen name="main_hpicker_subview_margin">5dp</dimen>
+    <dimen name="main_margin_to_bottom">5dp</dimen>
+    <dimen name="main_hpikcer_margin_to_top">5dp</dimen>
+
+
+    <dimen name="main_seekbar_bg_redius">12dp</dimen>
+    <dimen name="main_seekbar_hight">24dp</dimen>
+    <dimen name="main_seekbar_thumb_width">64dp</dimen>
+    <!-- thumb比seekbar小4个像素，上下各留2个像素。 -->
+    <dimen name="main_seekbar_thumb_height">22dp</dimen>
+    <dimen name="main_seekbar_offset">32dp</dimen>
+    <!-- padding比1/2个thumb宽度大4，在左右两边各留4个像素-->
+    <dimen name="main_seekbar_padding_side">36dp</dimen>
+    <dimen name="main_seekbar_padding_bottom">1dp</dimen>
+    <dimen name="main_seekbar_padding_top">1dp</dimen>
+    <dimen name="main_seekbar_iv_marginLeft">5dp</dimen>
+    <dimen name="main_seekbar_margin_to_bt_xunta">20dp</dimen>
+    <dimen name="main_seekbar_margin_to_bottom">10dp</dimen>
+    <dimen name="main_bt_xunta_width">64dp</dimen>
+    <dimen name="main_bt_xunta_height">64dp</dimen>
+    <dimen name="main_bt_start_width">96dp</dimen>
+    <dimen name="main_bt_start_height">48dp</dimen>
+    <dimen name="main_bt_xunta_margin_to_screen_right">5dp</dimen>
+    <dimen name="main_seekbar_margin_to_screen_left">5dp</dimen>
+    <dimen name="main_seekbar_redius_default">12dp</dimen>
+    <item name="main_seekbar_thumb_text_size" type="dimen" format="float">18.0</item>
+    <item name="main_map_movecamera_scrollby_y" type="dimen" format="float">64</item>
+
+    <dimen name="memberinfo_iv_width">96dp</dimen>
+    <dimen name="memberinfo_iv_height">96dp</dimen>
+    <item name="memeberinfo_iv_corner_radius_float" type="dimen" format="float">12.0</item>
+    <dimen name="memberinfo_magin_top">64dp</dimen>
+    <dimen name="memberinfo_margin_to_side">32dp</dimen>
+    <dimen name="memberinfo_margin_to_portrait">24dp</dimen>
+    <dimen name="memberinfo_margin_to_gender">24dp</dimen>
+    <dimen name="memberinfo_margin_to_age">24dp</dimen>
+    <dimen name="memberinfo_margin_to_tv">24dp</dimen>
+    <dimen name="memberinfo_bg_radius">12dp</dimen>
+    <dimen name="memberinfo_bg_stroke_width">2dp</dimen>
+    <dimen name="memberinfo_tv_margin_left">12dp</dimen>
+    <dimen name="memberinfo_paddingleft">12dp</dimen>
+    <dimen name="memberinfo_rg_width">128dp</dimen>
+    <dimen name="memberinfo_rg_height">32dp</dimen>
+    <dimen name="memberinfo_hpicker_width">180dp</dimen>
+    <dimen name="memberinfo_hpicker_subview_margin">2dp</dimen>
+    <dimen name="memberinfo_age_and_gender_layout_height">36dp</dimen>
+    <item name="memberinfo_hpicker_subview_text_size" type="dimen" format="float">18.0</item>
+
+    <dimen name="aboutus_margin_to_screen_side">5dp</dimen>
+    <dimen name="aboutus_margin_to_screen_top">10dp</dimen>
+</resources>
