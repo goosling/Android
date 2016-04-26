@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/main_layout"
+        android:background="@color/dark_grey"
+        android:orientation="vertical"
+        tools:context=".MainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/main_rl1"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+            <com.amap.api.maps.MapView
+                android:id="@+id/main_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                />
+
+            <LinearLayout
+                android:id="@+id/main_map_control1"
+                android:layout_alignBottom="@id/main_map"
+                android:layout_marginBottom="@dimen/main_seekbar_margin_to_bottom"
+                android:layout_marginLeft="@dimen/main_seekbar_margin_to_screen_left"
+                android:layout_marginRight="@dimen/main_bt_xunta_margin_to_screen_right"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/main_seekbar_ll"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/main_seekbar_margin_to_bt_xunta"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/main_seekbar_margin_to_bottom"
+                        android:background="@drawable/main_seekbar_layout_bg"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/main_seekbar_hight"
+                            android:layout_height="@dimen/main_seekbar_hight"
+                            android:layout_marginLeft="@dimen/main_seekbar_iv_marginLeft"
+                            android:contentDescription="@string/main_seekbar_ic_space_content_desc"
+                            android:src="@mipmap/ic_action_place" />
+
+                        <com.example.joe.mashangpinche.view.SeekBarWithText
+
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
