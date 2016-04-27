@@ -94,7 +94,7 @@
 
 
     <dimen name="main_seekbar_bg_redius">12dp</dimen>
-    <dimen name="main_seekbar_hight">24dp</dimen>
+    <dimen name="main_seekbar_height">24dp</dimen>
     <dimen name="main_seekbar_thumb_width">64dp</dimen>
     <!-- thumb比seekbar小4个像素，上下各留2个像素。 -->
     <dimen name="main_seekbar_thumb_height">22dp</dimen>
