@@ -2,22 +2,30 @@ package com.example.joe.mashangpinche.activities;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.example.joe.mashangpinche.db.Destination;
 import com.example.joe.mashangpinche.db.Member;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import au.com.bytecode.opencsv.CSVReader;
 
 
 /**
@@ -452,8 +460,100 @@ public class IwantUApp extends Application {
      * @param file
      * @return ArrayList<Destination>
      */
-    
+    public ArrayList<Destination> getCommonDestFromResource(int res_id,
+                                                            String theCityName) {
+        ArrayList<Destination>  dList = new ArrayList<>();
+        try{
+            CSVReader reader;
+            InputStream in = getResources().openRawResource(res_id);
+            reader = new CSVReader(new InputStreamReader(in));
+            String nextLine[];
+            while(((nextLine = reader.readNext()) != null) && (nextLine.length > 0)) {
+                String cityName = nextLine[0];
+                if(cityName != null && cityName.equals(theCityName)) {
+                    Destination d = new Destination();
+                    String destName = nextLine[1];
+                    float latitude = Float.parseFloat(nextLine[2]);
+                    float longitude = Float.parseFloat(nextLine[3]);
+                    d.setCityName(cityName);
+                    d.setDestName(destName);
+                    d.setLatitude(latitude);
+                    d.setLongitude(longitude);
+                    dList.add(d);
+                }
+            }
+            reader.close();
+        }catch (FileNotFoundException e) {
+            return null;
+        }catch (IOException e) {
+            return null;
+        }
+        return dList;
+    }
 
+    /**
+     * 获得默认的portrait文件
+     *
+     * @return
+     * @throws IOException
+     */
+    public File getDefaultPortraitFile() throws IOException {
+        return getResourceFile(R.mipmap.portrait_default_ta);
+    }
+
+    public File getResourceFile(int resourceId) {
+        File f = new File(this.getResources().getResourceName(resourceId));
+        return f;
+    }
+
+    public static void addActivity(Activity activity) {
+        activityList.add(activity);
+    }
+
+    public void removeActivity(Activity activity) {
+        for (Activity a : activityList) {
+            if (a == activity) {
+                activityList.remove(a);
+                break;
+            }
+        }
+    }
+
+    public static Activity getActivity(Class<?> c) {
+        for(Activity a: activityList) {
+            if(c == a.getClass()) {
+                return a ;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 获取当前网络连接状态.
+     *
+     * @return
+     */
+    public boolean isNetworkConnected() {
+        Context context = getApplicationContext();
+        // 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
+        try{
+            ConnectivityManager connMgr = (ConnectivityManager)context.getSystemService(
+                    Context.CONNECTIVITY_SERVICE);
+            if(connMgr != null) {
+                //获取管理网络链接的对象
+                NetworkInfo info = connMgr.getActiveNetworkInfo();
+                if(info != null && info.isConnected()) {
+                    if(info.getState() == NetworkInfo.State.CONNECTED ) {
+                        return true;
+                    }
+                }
+            }
+
+        }catch (Exception e) {
+
+        }
+        return false;
+    }
 
 
 
