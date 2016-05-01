@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.os.Message;
 
 /**
- * Created by joe on 2016/4/28.
+ * Created by joe on 2016/4/30.
  */
-public class LoginActivity extends Activity {
+public class IWantActivity extends Activity {
 
     public void handleMsg(Message msg) {
 

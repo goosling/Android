@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import android.util.Log;
 
 import com.example.joe.mashangpinche.db.Destination;
 import com.example.joe.mashangpinche.db.Member;
+import com.example.joe.mashangpinche.utils.AppUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -457,7 +460,7 @@ public class IwantUApp extends Application {
     /**
      * 读取含有destiantion的csv文件, 并返回 cityName相关的destination list。 文件必须是utf-8的编码。
      *
-     * @param file
+     *
      * @return ArrayList<Destination>
      */
     public ArrayList<Destination> getCommonDestFromResource(int res_id,
@@ -555,6 +558,59 @@ public class IwantUApp extends Application {
         return false;
     }
 
+    /**
+     * 将bytes所代表的图像内容写入到fileName代表的文件中。
+     * @param fileName，文件名
+     * @param bytes
+     * @return
+     */
+    public File createPortraitFile(String fileName, byte[] bytes) {
+        File file = new File(getPortraitFilesDir(), fileName);
+        try{
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(bytes);
+            fos.flush();
+            fos.close();
+        }catch(FileNotFoundException e) {
+            return null;
+        }catch(IOException e) {
+            return null;
+        }
+        return file;
+    }
+
+    /**
+     * 通过文件名获取drawable对象。
+     * @param fileName
+     * @return
+     */
+    public Drawable getDrawableFromFileName(String fileName, int reqWidth, int reqHeight) {
+        File file = new File(getPortraitFilesDir().getPath()
+            +File.separator + fileName);
+        if(!file.exists()) {
+            return null;
+        }
+
+        return getDrawableFromFile(file, reqWidth, reqHeight);
+    }
+
+    public Drawable getDrawableFromFile(File file, int reqWidth, int reqHeight) {
+        if(!file.exists()) {
+            return null;
+        }
+
+        Bitmap bmp = AppUtil.decodeBitmapFromFile(file.getPath(), reqWidth, reqHeight);
+        if(null == bmp) {
+            return null;
+        }
+
+        return new BitmapDrawable(getResources(), bmp);
+    }
+
+
+
+
+
 
 
 
@@ -562,14 +618,42 @@ public class IwantUApp extends Application {
     public static class MsgHandler extends Handler {
         public void handleMessage(Message msg) {
             int msgCode = msg.what;
-            //发送给login页面的消息
-            if(msgCode < 0x10) {
-                LoginActivity a1 = (LoginActivity)getActivity(LoginActivity.class);
-                if(null != a1) {
-                    a1.handleMsg();
+            if (msgCode < 0x10) {
+                LoginActivity a1 = (LoginActivity) getActivity(LoginActivity.class);
+                if (null != a1) {
+                    a1.handleMsg(msg);
+                }
+                // 发送给register step2的消息
+            } else if (msgCode < 0x20) {
+                RegisterStep2Activity a2 = (RegisterStep2Activity) getActivity(RegisterStep2Activity.class);
+                if (null != a2) {
+                    a2.handleMsg(msg);
+                }
+                // 发送给 member info的消息
+            } else if (msgCode < 0x30) {
+                MemberInfoActivity a3 = (MemberInfoActivity) getActivity(MemberInfoActivity.class);
+                if (null != a3) {
+                    a3.handleMsg(msg);
+                }
+                // 发送给 iwant的消息
+            } else if (msgCode < 0x40) {
+                IWantActivity a4 = (IWantActivity) getActivity(IWantActivity.class);
+                if (null != a4) {
+                    a4.handleMsg(msg);
+                }
+                // 发送给main的消息
+            } else if (msgCode < 0x50) {
+                MainActivity a5 = (MainActivity) getActivity(MainActivity.class);
+                if (null != a5) {
+                    a5.handleMsg(msg);
+                }
+                // 发送给feedback的消息
+            } else if (msgCode < 0x60) {
+                FeedBackActivity a6 = (FeedBackActivity) getActivity(FeedBackActivity.class);
+                if (null != a6) {
+                    a6.handleMsg(msg);
                 }
             }
         }
-
     }
 }
