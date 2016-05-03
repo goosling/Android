@@ -116,10 +116,31 @@
                     android:text="@string/xunta"
                     android:textSize="18sp" />
             </LinearLayout>
-
         </RelativeLayout>
 
-
+        <com.example.joe.mashangpinche.views.MyHorizontalPicker
+            android:id="@+id/main_hpicker"
+            android:layout_marginBottom="@dimen/main_margin_to_bottom"
+            android:layout_marginTop="@dimen/main_hpikcer_margin_to_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_layout_guide"
+        android:background="@mipmap/main_guide"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/main_bt_start"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/transparent"
+            android:layout_width="@dimen/main_bt_start_width"
+            android:layout_height="@dimen/main_bt_start_height" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

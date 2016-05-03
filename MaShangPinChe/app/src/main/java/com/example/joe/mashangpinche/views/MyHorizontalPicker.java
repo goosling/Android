@@ -171,7 +171,7 @@ public class MyHorizontalPicker extends RelativeLayout {
 
         hsv.setMsgHandler(mMsgHandler);
         hsv.setMsgWhat(msgWhat);
-        this.msgHandler = msgHandler;
+        this.msgHandler = mMsgHandler;
         this.msgWhat = msgWhat;
     }
 
