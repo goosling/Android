@@ -28,8 +28,23 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/bt_height_default"
             android:layout_weight="1"
-            android:layout_marginRight="@dimen/"
+            android:layout_marginRight="@dimen/login_bt_margin_to_screen_center"
+            android:layout_marginLeft="@dimen/login_bt_margin_to_screen_side"
+            android:gravity="center_horizontal|center_vertical"
+            style="@style/bt_default"
+            android:text="@string/bt_login"
             />
+
+        <Button
+            android:id="@+id/login_bt_register"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/login_bt_margin_to_screen_side"
+            android:layout_marginLeft="@dimen/login_bt_margin_to_screen_center"
+            android:gravity="center_horizontal|center_vertical"
+            style="@style/bt_default"
+            android:text="@string/bt_register"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bt_height_default" />
     </LinearLayout>
 
 
