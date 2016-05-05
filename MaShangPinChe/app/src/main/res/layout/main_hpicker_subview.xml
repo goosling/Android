@@ -6,4 +6,36 @@
     android:layout_width="0dp"
     android:layout_height="0dp">
 
+    <com.example.joe.mashangpinche.views.RoundCornerImageView
+        android:id="@+id/main_hpicker_subview_iv"
+        android:scaleType="fitXY"
+        example:radius="@dimen/main_hpicker_iv_corner_radius_float"
+        android:contentDescription="@string/iv_content_des_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/main_hpicker_subview_tv_index"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible"
+        android:contentDescription="@string/content_description_unused"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/main_hpicker_subview_tv_portrait_name"
+        android:layout_below="@id/main_hpicker_subview_tv_index"
+        android:visibility="invisible"
+        android:contentDescription="@string/content_description_unused"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/main_hpicker_subview_tv_taID"
+        android:layout_below="@id/main_hpicker_subview_tv_portrait_name"
+        android:visibility="invisible"
+        android:contentDescription="@string/content_description_unused"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>

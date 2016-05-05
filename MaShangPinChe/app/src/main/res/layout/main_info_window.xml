@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:example="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/main_infoWindow_ll1"
+    android:background="@mipmap/infowindow_bg_9"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/main_infoWindow_ll2"
+        android:layout_marginLeft="@dimen/main_infowindow_margin_left"
+        android:layout_marginRight="@dimen/main_infowindow_margin_left"
+        android:layout_marginTop="@dimen/main_infowindow_margin_top"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.example.joe.mashangpinche.views.RoundCornerImageView
+            android:id="@+id/main_infowindow_iv_portrait"
+            android:layout_gravity="center"
+            android:contentDescription="@string/iv_content_des"
+            android:scaleType="fitXY"
+            android:src="@mipmap/portrait_default_ta"
+            example:radius="@dimen/main_infowindow_iv_corner_radius_float"
+            android:layout_width="@dimen/main_infowindow_portrait_width"
+            android:layout_height="@dimen/main_infowindow_portrait_height" />
+
+        <LinearLayout
+            android:id="@+id/main_infowWindow_ll4"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/main_infowindow_info_margin_to_portrait"
+            android:gravity="center_vertical|left"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/main_infoWindow_tv_gender_and_age"
+                android:layout_weight="1"
+                android:textIsSelectable="false"
+                android:textColor="@color/white"
+                android:layout_width="@dimen/main_infowindow_tv_width"
+                android:layout_height="0" />
+
+            <TextView
+                android:id="@+id/main_infoWindow_tv_space_and_time_and_dest"
+                android:layout_weight="4"
+                android:lines="4"
+                android:textIsSelectable="false"
+                android:textColor="@color/white"
+                android:layout_width="@dimen/main_infowindow_tv_width"
+                android:layout_height="0" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_infoWindow_ll3"
+        android:layout_marginBottom="@dimen/main_infowindow_margin_bottom"
+        android:layout_marginLeft="@dimen/main_infowindow_margin_left"
+        android:layout_marginTop="@dimen/main_infowindow_margin_to_iv"
+        android:layout_marginRight="@dimen/main_infowindow_margin_right"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/main_infoWindow_bt_sms"
+            style="@style/bt_default"
+            android:layout_marginRight="@dimen/main_infowindow_bt_margin_to_another"
+            android:drawableLeft="@mipmap/ic_action_chat"
+            android:drawablePadding="@dimen/main_infowindow_bt_drawable_padding"
+            android:paddingLeft="@dimen/main_infowindow_bt_padding"
+            android:text="@string/main_infowindow_bt_sms"
+            android:textSize="@dimen/main_infowindow_bt_text_size"
+            android:layout_width="@dimen/main_infowindow_bt_width"
+            android:layout_height="@dimen/main_infowindow_bt_height" />
+
+        <Button
+            android:id="@+id/main_infoWindow_bt_call"
+            style="@style/bt_default"
+            android:layout_width="@dimen/main_infowindow_bt_width"
+            android:layout_height="@dimen/main_infowindow_bt_height"
+            android:layout_marginLeft="@dimen/main_infowindow_bt_margin_to_another"
+            android:drawableLeft="@mipmap/ic_action_call"
+            android:drawablePadding="@dimen/main_infowindow_bt_drawable_padding"
+            android:text="@string/main_infowindow_bt_call"
+            android:textSize="@dimen/main_infowindow_bt_text_size"/>
+
+    </LinearLayout>
+
+</LinearLayout>
