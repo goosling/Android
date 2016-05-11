@@ -93,9 +93,9 @@
     <dimen name="main_hpikcer_margin_to_top">5dp</dimen>
 
 
-    <dimen name="main_seekbar_bg_redius">12dp</dimen>
+    <dimen name="main_seekbar_bg_radius">12dp</dimen>
     <dimen name="main_seekbar_height">24dp</dimen>
-    <dimen name="main_seekbar_thumb_width">64dp</dimen>
+    <dimen name="main_seekbar_thumb_width">64dp</dimen>a
     <!-- thumb比seekbar小4个像素，上下各留2个像素。 -->
     <dimen name="main_seekbar_thumb_height">22dp</dimen>
     <dimen name="main_seekbar_offset">32dp</dimen>

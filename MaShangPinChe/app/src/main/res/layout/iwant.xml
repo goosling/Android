@@ -32,7 +32,7 @@
             android:layout_marginRight="@dimen/iwant_bt_margin_to_screen_side"
             android:layout_marginLeft="@dimen/iwant_bt_margin_to_screen_center"
             android:text="@string/iwant_b_xunta_str"
-            android:layout_width="0"
+            android:layout_width="0dp"
             android:layout_height="@dimen/bt_height_default" />
     </LinearLayout>
 

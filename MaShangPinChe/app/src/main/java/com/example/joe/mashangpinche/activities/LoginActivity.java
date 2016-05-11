@@ -11,10 +11,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.joe.mashangpinche.R;
 import com.example.joe.mashangpinche.db.Login;
 import com.example.joe.mashangpinche.db.Member;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by joe on 2016/4/28.
@@ -174,6 +179,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         @Override
         protected String doInBackground(MediaType... params) {
+            final String url = app.getServerBaseURL() + "commander";
+
+            HttpHeaders headers = new HttpHeaders();
+            HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
+            headers.set("Connection", "Close");
+            HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+            requestFactory.setConnectTimeout(IwantUApp.CONNETION_TIMEOUT);
+            RestTemplate template = new RestTemplate(requestFactory);
+
+
+
             return null;
         }
     }

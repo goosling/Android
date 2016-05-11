@@ -93,7 +93,7 @@
             android:layout_marginLeft="@dimen/memberinfo_margin_to_tv"
             android:gravity="center_vertical"
             android:layout_width="@dimen/memberinfo_hpicker_width"
-            android:layout_height="0"/>
+            android:layout_height="0dp"/>
 
     </LinearLayout>
 

@@ -3,6 +3,6 @@
     android:shape="rectangle" >
 
     <solid android:color="@color/themeYellow"/>
-    <corners android:radius="@dimen/main_seekbar_bg_redius"/>
+    <corners android:radius="@dimen/main_seekbar_bg_radius"/>
 
 </shape>
