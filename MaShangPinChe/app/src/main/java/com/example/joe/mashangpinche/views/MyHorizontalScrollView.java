@@ -10,6 +10,9 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.example.joe.mashangpinche.activities.IwantUApp.MsgHandler;
+
+import com.example.joe.mashangpinche.activities.IwantUApp;
 
 import java.lang.reflect.Field;
 
@@ -34,7 +37,7 @@ public abstract class MyHorizontalScrollView extends HorizontalScrollView {
 
     SpecialScroller mScroller = null;
 
-    private MsgHandler mHandler;
+    private IwantUApp.MsgHandler mHandler;
 
     private int msgWhat;
 
