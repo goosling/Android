@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:example="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.joe.mashangpinche.views.RoundCornerImageView
+        android:id="@+id/memberinfo_iv_image"
+        android:layout_marginTop="@dimen/memberinfo_magin_top"
+        android:contentDescription="@string/iv_content_des"
+        android:src="@mipmap/portrait_default"
+        android:scaleType="fitXY"
+        android:background="@drawable/memberinfo_iv_bg"
+        example:radius="@dimen/main_infowindow_iv_corner_radius_float"
+        android:layout_width="@dimen/memberinfo_iv_width"
+        android:layout_height="@dimen/memberinfo_iv_height" />
+
+    <LinearLayout
+        android:id="@+id/memberinfo_rl_gender"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/memberinfo_age_and_gender_layout_height"
+        android:layout_marginLeft="@dimen/memberinfo_margin_to_side"
+        android:layout_marginRight="@dimen/memberinfo_margin_to_side"
+        android:layout_marginTop="@dimen/memberinfo_margin_to_portrait"
+        android:background="@drawable/memberinfo_bg"
+        android:orientation="horizontal"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/memberinfo_paddingleft" >
+
+        <TextView
+            android:id="@+id/memberinfo_tv_gender"
+            style="@style/memberinfo_tv"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/memberinfo_tv_margin_left"
+            android:text="@string/gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioGroup
+            android:id="@+id/memberinfo_rg_gender"
+            android:layout_width="@dimen/memberinfo_rg_width"
+            android:layout_height="@dimen/memberinfo_rg_height"
+            android:layout_marginLeft="@dimen/memberinfo_margin_to_tv"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal|bottom"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/memberinfo_rb_male"
+                android:layout_gravity="center_vertical"
+                android:button="@drawable/my_theme_button_radio_holo_light"
+                android:checked="true"
+                android:text="@string/gender_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/memberinfo_rb_female"
+                android:layout_gravity="center_vertical"
+                android:button="@drawable/my_theme_button_radio_holo_light"
+                android:checked="true"
+                android:text="@string/gender_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/memberinfo_rl_age"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/memberinfo_age_and_gender_layout_height"
+        android:layout_marginLeft="@dimen/memberinfo_margin_to_side"
+        android:layout_marginRight="@dimen/memberinfo_margin_to_side"
+        android:layout_marginTop="@dimen/memberinfo_margin_to_gender"
+        android:background="@drawable/memberinfo_bg"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/memberinfo_paddingleft">
+
+        <TextView
+            android:id="@+id/memberinfo_tv_age"
+            style="@style/memberinfo_tv"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/memberinfo_tv_margin_left"
+            android:text="@string/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.example.joe.mashangpinche.views.MyHorizontalPicker
+            android:id="@+id/memberinfo_agepicker"
+            android:layout_marginLeft="@dimen/memberinfo_margin_to_tv"
+            android:gravity="center_vertical"
+            android:layout_width="@dimen/memberinfo_hpicker_width"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/memberinfo_bt_confirm"
+        style="@style/bt_default"
+        android:layout_marginLeft="@dimen/memberinfo_margin_to_side"
+        android:layout_marginRight="@dimen/memberinfo_margin_to_side"
+        android:layout_marginTop="@dimen/memberinfo_margin_to_age"
+        android:text="@string/memberinfo_bt_finish"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_height_default" />
+
+</LinearLayout>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/iwant_layout"
+    android:background="@color/dark_grey"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/iwant_ll"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/iwant_margin_to_screen_bottom"
+        android:layout_marginTop="@dimen/iwant_margin_to_control"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/iwant_bt_refresh"
+            style="@style/bt_default"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/iwant_bt_margin_to_screen_center"
+            android:layout_marginLeft="@dimen/iwant_bt_margin_to_screen_side"
+            android:layout_width="0dp"
+            android:text="@string/iwant_bt_refresh_relocate"
+            android:layout_height="@dimen/bt_height_default" />
+
+        <Button
+            android:id="@+id/iwant_bt_xunta"
+            android:layout_weight="1"
+            style="@style/bt_default"
+            android:layout_marginRight="@dimen/iwant_bt_margin_to_screen_side"
+            android:layout_marginLeft="@dimen/iwant_bt_margin_to_screen_center"
+            android:text="@string/iwant_b_xunta_str"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bt_height_default" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/iwant_seperate_line"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_above="@id/iwant_ll"
+        android:background="@color/dark_grey"/>
+
+    <LinearLayout
+        android:id="@+id/iwant_control_layout"
+        android:layout_above="@id/iwant_seperate_line"
+        android:layout_marginLeft="@dimen/iwant_margin_to_screen_side"
+        android:layout_marginRight="@dimen/iwant_margin_to_screen_side"
+        android:layout_marginTop="@dimen/iwant_margin_to_map"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/iwant_search_layout"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:id="@+id/iwant_ll_actv"
+                android:layout_weight="1"
+                android:background="@drawable/actv_bg_default"
+                android:layout_width="0dp"
+                android:hint="@string/iwant_actv_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="text|textAutoComplete"
+                android:maxLength="30"
+                android:textColor="@color/black"
+                android:textSize="@dimen/actv_text_size"
+                android:layout_height="@dimen/iwant_actv_height" />
+
+            <Button
+                android:id="@+id/iwant_bt_search"
+                style="@style/bt_with_icon"
+                android:layout_width="@dimen/iwant_search_bt_width"
+                android:layout_height="@dimen/iwant_search_bt_height"
+                android:layout_marginLeft="@dimen/iwant_margin_to_actv"
+                android:drawableLeft="@mipmap/ic_search_white"
+                android:drawablePadding="0dp"
+                android:text="@string/bt_search" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/iwant_ll_common_dest"
+            android:layout_marginTop="@dimen/iwant_margin_to_search"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/iwant_ll2_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/iwant_common_dest_tv_1"
+                android:textSize="@dimen/iwant_tv_comm_dest_text_size"
+                android:textColor="@color/white" >
+            </TextView>
+            <RadioGroup
+                android:id="@+id/iwant_ll2_ll1_rg"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" >
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/iwant_map_rl"
+        android:layout_above="@id/iwant_control_layout"
+        android:layout_alignParentTop="true"
+        android:background="@color/themeYellow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/iwant_map"
+            android:layout_marginBottom="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/iwant_tv_map_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/dark_grey"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingLeft="@dimen/iwant_tv_paddingSide"
+            android:paddingRight="@dimen/iwant_tv_paddingSide"
+            android:paddingBottom="@dimen/iwant_tv_paddingBottom"
+            android:paddingTop="@dimen/iwant_tv_paddingTop"
+            android:textIsSelectable="false" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

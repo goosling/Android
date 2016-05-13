@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WechatSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="plus_group_chat">发起群聊</string>
+    <string name="plus_add_friend">添加朋友</string>
+    <string name="plus_video_chat">扫一扫</string>
+    <string name="plus_scan">收钱</string>
+    <string name="plus_take_photo">扫码</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ActivityTest</string>
+    <string name="dialog">This is a dialog activity</string>
+    <string name="normal">This is a normal activity</string>
+</resources>

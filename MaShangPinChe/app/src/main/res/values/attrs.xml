@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyRadioButton">
+        <attr name="pic" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="RoundCornerImageView">
+        <attr name="radius" format="float"/>
+    </declare-styleable>
+</resources>

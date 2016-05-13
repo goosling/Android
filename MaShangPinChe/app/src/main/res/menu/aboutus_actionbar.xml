@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/aboutus_actionbar_back"
+        android:icon="@mipmap/ic_action_back"
+        android:titleCondensed="@string/aboutus_actionbar_back"
+        android:title="@string/aboutus_actionbar_back_title"/>
+
+</menu>

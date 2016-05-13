@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/main_layout"
+        android:background="@color/dark_grey"
+        android:orientation="vertical"
+        tools:context=".MainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/main_rl1"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+            <com.amap.api.maps.MapView
+                android:id="@+id/main_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                />
+
+            <LinearLayout
+                android:id="@+id/main_map_control1"
+                android:layout_alignBottom="@id/main_map"
+                android:layout_marginBottom="@dimen/main_seekbar_margin_to_bottom"
+                android:layout_marginLeft="@dimen/main_seekbar_margin_to_screen_left"
+                android:layout_marginRight="@dimen/main_bt_xunta_margin_to_screen_right"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/main_seekbar_ll"
+                    android:layout_weight="1"
+                    android:layout_marginRight="@dimen/main_seekbar_margin_to_bt_xunta"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/main_seekbar_margin_to_bottom"
+                        android:background="@drawable/main_seekbar_layout_bg"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/main_seekbar_height"
+                            android:layout_height="@dimen/main_seekbar_height"
+                            android:layout_marginLeft="@dimen/main_seekbar_iv_marginLeft"
+                            android:contentDescription="@string/main_seekbar_ic_space_content_desc"
+                            android:src="@mipmap/ic_action_place" />
+
+                        <com.example.joe.mashangpinche.views.SeekBarWithText
+                            android:id="@+id/main_seekbar_space1"
+                            android:background="@mipmap/main_seekbar_bg_9"
+                            android:max="2"
+                            android:paddingBottom="@dimen/main_seekbar_padding_bottom"
+                            android:paddingLeft="@dimen/main_seekbar_padding_side"
+                            android:paddingRight="@dimen/main_seekbar_padding_side"
+                            android:paddingTop="@dimen/main_seekbar_padding_top"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/main_progress_seekbar_drawable"
+                            android:layout_height="@dimen/main_seekbar_height"
+                            android:layout_width="match_parent"
+                            android:thumb="@drawable/main_seekbar_thumb"
+                            android:thumbOffset="@dimen/main_seekbar_offset"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:background="@drawable/main_seekbar_bg"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_marginLeft="@dimen/main_seekbar_iv_marginLeft"
+                            android:contentDescription="@string/main_seekbar_ic_time_content_desc"
+                            android:src="@mipmap/ic_action_time"
+                            android:layout_width="@dimen/main_seekbar_height"
+                            android:layout_height="@dimen/main_seekbar_height" />
+
+                        <com.example.joe.mashangpinche.views.SeekBarWithText
+                            android:id="@+id/main_seekbar_time_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/main_seekbar_height"
+                            android:layout_gravity="center_vertical"
+                            android:background="@mipmap/main_seekbar_bg_9"
+                            android:max="2"
+                            android:paddingBottom="@dimen/main_seekbar_padding_bottom"
+                            android:paddingLeft="@dimen/main_seekbar_padding_side"
+                            android:paddingRight="@dimen/main_seekbar_padding_side"
+                            android:paddingTop="@dimen/main_seekbar_padding_top"
+                            android:progress="0"
+                            android:thumb="@drawable/main_seekbar_thumb"
+                            android:thumbOffset="@dimen/main_seekbar_offset"
+                            android:scaleType="fitCenter"
+                            android:progressDrawable="@drawable/main_progress_seekbar_drawable"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/main_bt_xunta"
+                    style="@style/bt_default"
+                    android:layout_width="@dimen/main_bt_xunta_width"
+                    android:layout_height="@dimen/main_bt_xunta_height"
+                    android:text="@string/xunta"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <com.example.joe.mashangpinche.views.MyHorizontalPicker
+            android:id="@+id/main_hpicker"
+            android:layout_marginBottom="@dimen/main_margin_to_bottom"
+            android:layout_marginTop="@dimen/main_hpikcer_margin_to_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_layout_guide"
+        android:background="@mipmap/main_guide"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/main_bt_start"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/transparent"
+            android:layout_width="@dimen/main_bt_start_width"
+            android:layout_height="@dimen/main_bt_start_height" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterStep2Activity">
+
+    <TextView
+        android:id="@+id/rstep2_tv"
+        android:layout_marginLeft="@dimen/rstep2_margin_to_screen_side"
+        android:layout_marginTop="@dimen/rstep2_margin_to_top"
+        android:text="@string/tv_vcode_sent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/rstep2_et"
+        android:layout_marginLeft="@dimen/rstep2_margin_to_screen_side"
+        android:layout_marginRight="@dimen/rstep2_margin_to_screen_side"
+        android:layout_marginTop="@dimen/rstep2_margin_to_top"
+        android:background="@drawable/mytheme_edit_text_holo_light"
+        android:hint="@string/et_hint_input_vcode"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/rstep2_bt_resend"
+        style="@style/bt_default"
+        android:layout_marginLeft="@dimen/rstep2_margin_to_screen_side"
+        android:layout_marginRight="@dimen/rstep2_margin_to_screen_side"
+        android:layout_marginTop="@dimen/rstep2_margin_to_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_height_default" />
+
+    <LinearLayout
+        android:id="@+id/rstep2_ll"
+        android:layout_marginLeft="@dimen/rstep2_margin_to_screen_side"
+        android:layout_marginRight="@dimen/rstep2_margin_to_screen_side"
+        android:layout_marginTop="@dimen/rstep2_margin_to_top"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/rstep2_bt_pre"
+            style="@style/bt_default"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginRight="@dimen/rstep2_bt_margin_to_screen_center"
+            android:text="@string/bt_prestep"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bt_height_default" />
+
+        <Button
+            android:id="@+id/rstep2_bt_next"
+            style="@style/bt_default"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginLeft="@dimen/rstep2_bt_margin_to_screen_center"
+            android:text="@string/bt_nextstep"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bt_height_default" />
+    </LinearLayout>
+
+</LinearLayout>

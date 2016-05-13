@@ -1,0 +1,157 @@
+<resources>
+    <string name="host">110.76.47.112</string>
+    <!--     <string name="host">192.168.2.105</string> -->
+    <!-- <string name="host">192.168.0.105</string> -->
+    <!--     <string name="host">10.68.208.33</string> -->
+    <string name="port" translatable="false">3829</string>
+    <string name="folder">/ixuntaServer/</string>
+    <!-- APPLICATION SPECIFIC PARAMETERS -->
+    <string name="app_name" translatable="false">马上拼车</string>
+    <string name="ex_conn_timeout">连接服务器超时</string>
+    <string name="ex_unknown">发生未知错误</string>
+    <string name="login_toast_logining">登录中...</string>
+    <string name="login_toast_login_fail">登录失败，请注册</string>
+    <string name="toast_need_relogin">操作超时，需要重新登录</string>
+    <string name="toast_phonenum_illegal">手机号码格式有误，请重新输入</string>
+    <string name="toast_vcode_sent_fail">验证码发送失败，请重新输入手机号</string>
+    <string name="toast_vcode_sent">验证码已经发送，请查收</string>
+    <string name="toast_vcode_verify_fail">验证码验证失败</string>
+    <string name="toast_vcode_verify_success">验证码验证成功</string>
+    <string name="toast_vcode_illegal">验证码验输入有误</string>
+    <string name="view_vcode_resend">秒后重新获取</string>
+    <string name="view_vcode_resend_1">重新获取</string>
+    <string name="view_vcode_resend_2">正在发送验证码</string>
+    <string name="tv_vcode_sent">验证码已经发送到：%1$s</string>
+    <string name="toast_cannt_save_file">文件不能够被保存</string>
+    <string name="toast_cannt_open_file">打开文件失败</string>
+    <string name="iwant_toast_locating">正在定位</string>
+    <string name="toast_input_search_keyword">请输入关键词</string>
+    <string name="toast_force_update">系统更新，必须升级之后才能使用，请重启APP并选择升级，谢谢！</string>
+    <string name="toast_update_member_fail">更新失败</string>
+    <string name="toast_update_member_success">更新成功</string>
+    <string name="progress_getting_common_destinations">正在获取常用地址</string>
+    <string name="toast_doubleclick_exit">再次点击退出程序</string>
+    <string name="content_description_unused"></string>
+    <string name="iwant_common_dest_tv_1">常用地地址：</string>
+    <string name="iwant_common_dest_tv_2">常用地地址：暂无</string>
+    <string name="et_hint_input_phonenum">请输入手机号码</string>
+    <string name="tv_countrycode">+86</string>
+    <string name="et_hint_input_vcode">请输入验证码</string>
+    <string name="view_hint_feedback_email">email地址，可不填</string>
+    <string name="view_hint_feedback_content">请在此填写反馈，您的意见对我们非常重要，谢谢！</string>
+    <string name="toast_feedback_success">感谢您的反馈</string>
+    <string name="toast_feedback_fail">发送失败，请重新发送</string>
+    <string name="toast_feedback_input">请输入反馈，谢谢</string>
+    <!-- UI SPECIFIC PARAMETERS -->
+
+    <string name="memberinfo_label">个人信息</string>
+    <string name="main_label">寻TA</string>
+    <string name="iwant_label">设定目的地</string>
+    <string name="aboutus_label">关于我们</string>
+    <string name="feedback_label">意见反馈</string>
+    <string name="rstep_label">注册</string>
+
+    <string name="view_iwant_cover_content">登录图面</string>
+
+    <string name="main_toast_publishandsearch">正在寻找TA</string>
+    <string name="main_seekbar_ic_time_content_desc">时间</string>
+    <string name="main_seekbar_ic_space_content_desc">空间</string>
+    <string name="main_infowindow_gender_and_age">%1$s，%2$d岁，</string>
+    <string name="main_infowindow_space_and_time">距您%1$s，%2$d分钟前</string>
+    <string name="main_infowindow_ta_male">他</string>
+    <string name="main_infowindow_ta_female">她</string>
+    <string name="main_infowindow_ta_destination">要拼车到%1$s</string>
+
+    <string name="bt_register">注            册</string>
+    <string name="bt_login">登           陆</string>
+    <string name="bt_nextstep">下一步</string>
+    <string name="bt_prestep">上一步</string>
+    <string name="bt_search">搜索</string>
+
+
+    <string name="memberinfo_open_image_title">选择头像</string>
+
+    <string-array name="memberinfo_open_image_array">
+        <item>从已有图片选择</item>
+        <item>拍照</item>
+    </string-array>
+
+    <string name="iwant_b_xunta_str">寻TA</string>
+    <string name="iwant_actv_hint">请输入地址                                            </string>
+    <string name="iwant_toast_locating_cancelled">定位取消，请重新定位</string>
+    <string name="iwant_bt_refresh_relocate">重新定位</string>
+    <string name="iwant_bt_refresh_reset_destination">重置目的地</string>
+    <string name="iwant_info_cannt_get_poi">地图服务商出现异常，不能获得当前位置信息</string>
+    <string name="iwant_info_no_poi">地图服务商出现异常，不能获得相关信息</string>
+    <string name="iwant_info_querying_route">正在查询路线信息</string>
+    <string name="iwant_info_no_search_result">没有任何结果</string>
+    <string name="iwant_info_no_route">地图服务商出现异常，不能获得路线信息</string>
+    <string name="iwant_geo_info_1">号</string>
+    <string name="iwant_geo_info_2">靠近</string>
+    <string name="iwant_info1">您要到%1$s，距离%2$d公里，大约需要%3$s。如需更改目的地，请点击“重置目的地”。</string>
+    <string name="iwant_info2">路程较短，推荐您步行前往目的地！</string>
+    <string name="iwant_info_querying_poi">正在查询地点信息</string>
+    <string name="memberinfo_bt_finish">完成</string>
+    <string name="minute">分钟</string>
+    <string name="hour">小时</string>
+    <string name="xunta">寻TA</string>
+    <string name="gender">性别:</string>
+    <string name="age">年龄:</string>
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="iv_content_des">点击更换头像</string>
+    <string name="iv_content_des_1">头像</string>
+    <string name="main_infowindow_bt_sms">发短信</string>
+    <string name="main_infowindow_bt_call">打电话</string>
+    <string name="main_infowindow_bt_called">已联系</string>
+    <string name="main_infowindow_bt_smsed">已联系</string>
+    <string name="main_toast_not_found_ta">没有合适的TA，请调整时间和空间的搜索范围再次尝试。</string>
+    <string name="main_alertdialog_askifwork">是否找到了TA？</string>
+    <string name="main_alertdialog_bt_yes">是的</string>
+    <string name="main_alertdialog_bt_no">没有</string>
+    <string name="main_actionbar_memberinfo_title">个人资料</string>
+    <string name="main_actionbar_more_title">更多</string>
+    <string name="main_actionbar_feedback_title">意见反馈</string>
+    <string name="main_actionbar_aboutus_title">关于我们</string>
+    <string name="main_actionbar_exit_title">退出</string>
+    <string name="main_bt_start">我知道啦</string>
+    <string name="feedback_actionbar_send_title">发送</string>
+    <string name="aboutus_actionbar_back_title">返回</string>
+    <string name="aboutus_content">
+<![CDATA[
+		<p>寻TA致力于帮助您找到合适的陌生人。 有关我们更多的信息，请关注我们的公共账号。</p>
+		<p>微博：众寻科技 </p>
+		<p>QQ群：334068601 </p>
+		<p>邮箱：ixunta@qq.com </p>
+		]]>
+    </string>
+    <string name="sms_content_formatted">我想要到%1$s,你愿意一起拼车吗？</string>
+    <string name="login_introduce">
+	<![CDATA[
+			<p class="MsoNormal">
+				以下信息仅在测试版本使用。<span></span>
+			</p>
+			<p class="MsoNormal">
+				寻<span>TA</span>致力于帮助您找到合适的拼车对象，节省打车费用。<span></span>
+			</p>
+			<p class="MsoNormal">
+				产品使用简单，首次使用的流程为：<strong><span style="color:#000000;background-color:#FF9900;">注册</span></strong><span style="color:#000000;background-color:#FF9900;"><strong>-</strong></span><strong><span style="color:#000000;background-color:#FF9900;">修改个人信息</span></strong><span style="color:#000000;background-color:#FF9900;"><strong>-</strong></span><strong><span style="color:#000000;background-color:#FF9900;">设定目的地</span></strong><span style="color:#000000;background-color:#FF9900;"><strong>-</strong></span><strong><span style="color:#000000;background-color:#FF9900;">寻</span></strong><span style="color:#000000;background-color:#FF9900;"><strong>TA</strong></span>，再次使用您无需注册，设定目的地后就可以寻<span>TA</span>。<span></span>
+			</p>
+			<p class="MsoNormal">
+				<span style="background-color:#FF9900;"><strong>注册</strong></span>时需要您输入手机号，我们会把验证码以短信的形式发给您。<span></span>
+			</p>
+			<p class="MsoNormal">
+				<span style="background-color:#FF9900;"><strong>个人信息</strong></span>页面您可以设置您的头像、性别、年龄。这些信息方便别人找到您。<span></span>
+			</p>
+			<p class="MsoNormal">
+				在<span style="background-color:#FF9900;"><strong>目的地设置</strong></span>页面，您可以通过在地图上点击、搜索或者直接选择常用目的地的方式来设定您打车的目的地。<span></span>
+			</p>
+			<p class="MsoNormal">
+				找到合适的<span>TA</span>后，在<span style="background-color:#FF9900;"><strong>寻</strong></span><span style="background-color:#FF9900;"><strong>TA</strong></span>页面，地图上显示<span>TA</span>的位置，左右拖动屏幕下方的头像，地图上会在<span>TA</span>位置的上方显示<span>TA</span>的详细信息，您可以选择发短信或者打电话的方式联系到<span>TA</span>。如果没有找到合适的<span>TA</span>，您可以修改地图下方的时间距离和空间距离再次寻<span>TA</span>！<span></span>
+			</p>
+	]]>
+    </string>
+
+    <!--menu-->
+    <string name="aboutus_actionbar_back">返回</string>
+</resources>
