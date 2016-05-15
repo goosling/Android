@@ -15,6 +15,7 @@ import android.os.Message;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.example.joe.mashangpinche.R;
 import com.example.joe.mashangpinche.db.Destination;
 import com.example.joe.mashangpinche.db.Member;
 import com.example.joe.mashangpinche.utils.AppUtil;
@@ -271,7 +272,7 @@ public class IwantUApp extends Application {
         if(!defaultPortraitFileDir.exists()) {
             try{
                 Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                        R.mipmap.portriat_default_ta);
+                        R.mipmap.portrait_default_ta);
                 FileOutputStream fos = new FileOutputStream(defaultPortraitFileDir);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
                 fos.close();
