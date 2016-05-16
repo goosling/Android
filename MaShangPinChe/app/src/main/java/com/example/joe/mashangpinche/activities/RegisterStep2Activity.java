@@ -12,10 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.joe.mashangpinche.R;
 import com.example.joe.mashangpinche.db.Member;
 import com.example.joe.mashangpinche.db.Register;
+import com.example.joe.mashangpinche.utils.AppUtil;
 
 import org.apache.http.conn.ConnectTimeoutException;
 import org.springframework.http.HttpEntity;
@@ -29,6 +31,7 @@ import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by joe on 2016/4/30.
@@ -256,16 +259,201 @@ public class RegisterStep2Activity extends Activity implements View.OnClickListe
 
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+            // 发生异常
+            if (null == s) {
+                return;
+            }
+            if (s.equals(String.format("%02x",
+                    IwantUApp.RESPONSE_CODE_VCODE_SEND_FAIL))) {
+                IwantUApp.msgHandler
+                        .sendEmptyMessage(IwantUApp.MSG_TO_RSTEP2_VCODE_SENT_FAIL);
+                return;
+            }
+            Message msg = new Message();
+            msg.what = IwantUApp.MSG_TO_RSTEP2_VCODE_SENT;
+            Bundle b = new Bundle();
+            b.putString("registerID", s);
+            msg.setData(b);
+            IwantUApp.msgHandler.sendMessage(msg);
         }
 
         @Override
         protected String doInBackground(MediaType... params) {
-            return null;
+            final String url = app.getServerBaseURL() + "getVcode";
+            HttpHeaders requestHeaders = new HttpHeaders();
+            requestHeaders.set("Connection", "Close");
+            requestHeaders.setContentType(MediaType.APPLICATION_XML);
+            HttpEntity<Register> requestEntity = new HttpEntity<Register>(r,
+                    requestHeaders);
+            HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+            requestFactory.setConnectTimeout(IwantUApp.CONNETION_TIMEOUT);
+            RestTemplate restTemplate = new RestTemplate(requestFactory);
+            restTemplate.getMessageConverters().add(
+                    new StringHttpMessageConverter());
+            restTemplate.getMessageConverters().add(
+                    new SimpleXmlHttpMessageConverter());
+            ResponseEntity<String> response;
+            try {
+                response = restTemplate.exchange(url, HttpMethod.POST,
+                        requestEntity, String.class);
+            } catch (Exception e) {
+                // 连接服务器超时
+                if (e instanceof ConnectTimeoutException
+                        || e.getCause() instanceof ConnectTimeoutException) {
+                    IwantUApp.msgHandler
+                            .sendEmptyMessage(IwantUApp.MSG_TO_RSTEP2_EX_CONNECT_TIMEOUT);
+                    return null;
+                    // 未知错误
+                } else {
+                    IwantUApp.msgHandler
+                            .sendEmptyMessage(IwantUApp.MSG_TO_RSTEP2_EX_UNKNOWN);
+                    return null;
+                }
+                // 其它异常
+            }
+            return response.getBody();
         }
     }
 
-    public void handleMsg(Message msg) {
+    /**
+     * 定时任务。每秒钟更新重新发送按钮的显示内容，以显示仍需要等待多长时间才能够再次请求验证码。
+     *
+     * @author joe
+     *
+     */
+    private class TimerTask_SecondsLeft extends TimerTask {
 
+        int secondsLeft;
+
+        public TimerTask_SecondsLeft(int secondsLeft) {
+            this.secondsLeft = secondsLeft;
+        }
+
+        @Override
+        public void run() {
+            secondsLeft--;
+            Message msg = new Message();
+            Bundle b = new Bundle();
+            b.putInt("secondsLeft", secondsLeft);
+            msg.setData(b);
+            msg.what = IwantUApp.MSG_TO_RSTEP2_SECONDS_LEFT_BEFORE_GETVCODE;
+            IwantUApp.msgHandler.sendMessage(msg);
+            if(secondsLeft == 0) {
+                cancel();
+            }
+        }
+    }
+
+    /**
+     * 用户输入验证码不符合规则*/
+    private void onInputVcodeIllegal() {
+        Toast.makeText(getApplicationContext(), R.string.toast_vcode_illegal,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    public void handleMsg(Message msg) {
+        switch (msg.what) {
+            // 连接服务器超时
+            case IwantUApp.MSG_TO_RSTEP2_EX_CONNECT_TIMEOUT:
+                Toast.makeText(getApplicationContext(), R.string.ex_conn_timeout,
+                        Toast.LENGTH_SHORT).show();
+                bt_next.setEnabled(false);
+                break;
+            // 未知异常
+            case IwantUApp.MSG_TO_RSTEP2_EX_UNKNOWN:
+                Toast.makeText(getApplicationContext(), R.string.ex_unknown,
+                        Toast.LENGTH_SHORT).show();
+                bt_next.setEnabled(false);
+                break;
+
+            // 根据剩余时间更新resend按钮。
+            case IwantUApp.MSG_TO_RSTEP2_SECONDS_LEFT_BEFORE_GETVCODE:
+                int secondsLeft = msg.getData().getInt("secondsLeft");
+                if (secondsLeft == 0) {
+                    bt_reGetVcode.setText(R.string.view_vcode_resend_1);
+                    bt_reGetVcode.setEnabled(true);
+                } else {
+                    bt_reGetVcode.setText(secondsLeft
+                            + getResources().getString(R.string.view_vcode_resend));
+                }
+                break;
+            case IwantUApp.MSG_TO_RSTEP2_VCODE_SENT_FAIL:
+                Toast.makeText(getApplicationContext(),
+                        R.string.toast_vcode_sent_fail, Toast.LENGTH_SHORT).show();
+                // this.onBackPressed();
+                break;
+            // 验证码发送成功
+            case IwantUApp.MSG_TO_RSTEP2_VCODE_SENT:
+                Toast.makeText(getApplicationContext(), R.string.toast_vcode_sent,
+                        Toast.LENGTH_SHORT).show();
+                timeGotVcode = System.currentTimeMillis();
+
+                String id = msg.getData().getString("registerID");
+                register.setId(id);
+
+                bt_reGetVcode.setEnabled(false);
+                bt_next.setEnabled(true);
+
+                // 每一秒钟更新一次重新发送按钮的剩余时间
+                if (null != timer) {
+                    timer.cancel();
+                    timer.purge();
+                }
+                timer = new Timer();
+                timer.schedule(new TimerTask_SecondsLeft(
+                        IwantUApp.INTERVAL_BETWEEN_GETVCODE), 0, 1000);
+                break;
+            // 验证码验证成功。
+            case IwantUApp.MSG_TO_RSTEP2_VCODE_SUCCESS:
+                Toast.makeText(getApplicationContext(),
+                        R.string.toast_vcode_verify_success, Toast.LENGTH_SHORT)
+                        .show();
+                String memberID = msg.getData().getString("memberID");
+                member = new Member();
+                member.setId(memberID);
+                member.setPhoneNum(register.getPhoneNum());
+                member.setImsi(app.getIMSI());
+                app.setMember(member);
+                startMemberInfoActivity();
+                break;
+            // 验证码验证失败
+            case IwantUApp.MSG_TO_RSTEP2_VCODE_FAIL:
+                Toast.makeText(getApplicationContext(),
+                        R.string.toast_vcode_verify_fail, Toast.LENGTH_SHORT)
+                        .show();
+                break;
+            default:
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.setClass(getApplicationContext(), RegisterStep1Activity.class);
+        intent.putExtra(IwantUApp.ONTOLOGY_REGISTER, register);
+        startActivityForResult(intent, REQUEST_CODE_STEP1);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.rstep2_bt_next:
+                String vCode = et_vcode.getText().toString();
+                if(false == AppUtil.preCheckVerCode(vCode)) {
+                    onInputVcodeIllegal();
+                    return;
+                }
+                register.setvCode(vCode);
+                new CheckVCodeTask().execute();
+                break;
+            case R.id.rstep2_bt_pre:
+                onBackPressed();
+                break;
+            case R.id.rstep2_bt_resend:
+                register.setDatetime(System.currentTimeMillis());
+                new GetVCodeTask().execute();
+                break;
+            default:
+        }
     }
 }
