@@ -456,4 +456,52 @@ public class RegisterStep2Activity extends Activity implements View.OnClickListe
             default:
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        switch (requestCode) {
+            case REQUEST_CODE_STEP1:
+                Register r = (Register)data.getSerializableExtra(IwantUApp.ONTOLOGY_REGISTER);
+                //手机号码发生变化，重新开始
+                if(!register.getPhoneNum().equals(r.getPhoneNum())) {
+                    register.setPhoneNum(r.getPhoneNum());
+
+                    if(null != timer) {
+                        timer.cancel();
+                        timer.purge();
+                    }
+
+                    tv_info.setText(String.format(getResources().getString(R.string.tv_vcode_sent)
+                                          , r.getPhoneNum()));
+                    bt_reGetVcode.setText(R.string.view_vcode_resend_2);
+                    bt_reGetVcode.setEnabled(false);
+                    bt_next.setEnabled(false);
+                    new GetVCodeTask().execute();
+                }else {
+                    restoreTimer();
+                }
+                break;
+            default:
+        }
+    }
+
+    private void restoreTimer() {
+        int secondsElapsed = (int) ((System.currentTimeMillis() - timeGotVcode) / 1000);
+        int secondsLeft = IwantUApp.INTERVAL_BETWEEN_GETVCODE - secondsElapsed;
+        if (secondsLeft <= 0) {
+            bt_reGetVcode.setText(R.string.view_vcode_resend_1);
+            bt_reGetVcode.setEnabled(true);
+        } else {
+            bt_reGetVcode.setText(secondsLeft + R.string.view_vcode_resend);
+            timer = new Timer();
+            timer.schedule(new TimerTask_SecondsLeft(secondsLeft), 0, 1000);
+
+            bt_reGetVcode.setEnabled(false);
+            bt_next.setEnabled(true);
+        }
+    }
 }
