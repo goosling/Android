@@ -20,70 +20,83 @@ import com.example.joe.mashangpinche.activities.IwantUApp.MsgHandler;
 public class MyHorizontalPicker extends RelativeLayout {
 
     private MyHorizontalScrollView hsv;
+    // mask
+    private ImageView imageView;
 
-    private ImageView mImageView;
-
-    private int hsvHeight;
-
+    /*
+     * view 的宽度
+     */
+    private int width;
+    /*
+     * view的高度
+     */
+    private int height;
     private int hsvWidth;
-
-    /**
-     * View的宽高*/
-    private int width, height;
-
-    //hsv中subview的数量
+    private int hsvHeight;
+    /*
+     * hsv中subview的数量
+     */
     private int itemCnt;
-
     /*
-	 * hsv中item的宽度，=subViewWidth+2*subViewMargin
-	 */
+     * hsv中item的宽度，=subViewWidth+2*subViewMargin
+     */
     private int itemWidth;
-
+    /*
+     * hsv中itme的高度，=subViewHeight
+     */
     private int itemHeight;
-
-    //hsv中subview的宽高
-    private int subViewWidth, subViewHeight;
-
-    private RelativeLayout.LayoutParams hsvParams;
-
     /*
-	 * mask view在view中的位置。可以为RelativeLayout.CENTER_HORIZONTAL、RelativeLayout。ALIGN_PARENT_LEFT、RelativeLayout。ALIGN_PARENT_RIGHT
-	 */
+     * hsv中subview的宽度
+     */
+    private int subViewWidth;
+    /*
+     * hsvsubview的高度。
+     */
+    private int subViewHeight;
+
+    private RelativeLayout.LayoutParams hsvLayoutParams;
+    /*
+     * mask view在view中的位置。可以为RelativeLayout.CENTER_HORIZONTAL、RelativeLayout。ALIGN_PARENT_LEFT、RelativeLayout。ALIGN_PARENT_RIGHT
+     */
     private int maskViewPos;
-
     /*
-	 * dummy subview的单侧数量，
-	 */
+     * dummy subview的单侧数量，
+     */
     private int dummySubViewCnt;
 
     /*
-	 * subview之间的水平间隔距离
-	 */
+     * subview之间的水平间隔距离
+     */
     private int subViewMargin;
 
-    public static final String MSG_KEYS = "currentIndex";
+    public static final String MSG_KEY = "currentIndex";
 
     private MsgHandler msgHandler;
-
     private int msgWhat;
 
-    public MyHorizontalPicker(Context context, AttributeSet attrs) {
-        super(context, attrs);
 
-        hsv = new MyHorizontalScrollView(context) {
+    public MyHorizontalPicker(Context context, AttributeSet attributeSet ) {
+        super(context, attributeSet);
+
+        hsv = new MyHorizontalScrollView(context){
+
             @Override
             public void onCurrentIndexChanged() {
-                if(null != msgHandler) {
+                // TODO Auto-generated method stub
+                if (null != msgHandler){
+                    // 发送消息
                     Bundle b = new Bundle();
-                    b.putInt(MyHorizontalPicker.MSG_KEYS, getAdjustedCurrentIndex());
+                    b.putInt(MyHorizontalPicker.MSG_KEY, getAdjustedCurrentIndex());
                     Message msg = new Message();
                     msg.setData(b);
                     msg.what = msgWhat;
                     msgHandler.sendMessage(msg);
                 }
             }
+
         };
-        mImageView = new ImageView(context);
+        imageView = new ImageView(context);
+
     }
 
     public MyHorizontalPicker(Context context, AttributeSet attributeSet, MsgHandler msgHandler, int msgWhat) {
@@ -94,20 +107,23 @@ public class MyHorizontalPicker extends RelativeLayout {
         this.msgHandler = msgHandler;
         this.msgWhat = msgWhat;
     }
-
     /**
      * hsv 增加subview
      * @param view
      * @param pos
      */
-    public void addSubView(View view, int pos) {
+    public void addSubView(View view, int pos){
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(subViewWidth, subViewHeight);
         lp.setMargins(subViewMargin, subViewMargin, subViewMargin, subViewMargin);
-        lp.gravity = Gravity.CENTER;
+        lp.gravity=Gravity.CENTER;
         hsv.addSubView(view, pos, lp);
     }
 
-    public void addSubView(View view) {
+    /**
+     * hsv 增加subview.
+     * @param view
+     */
+    public void addSubView(View view){
         addSubView(view, 0);
     }
 
@@ -115,9 +131,9 @@ public class MyHorizontalPicker extends RelativeLayout {
      * 移动视图，移动位置根据dummy subview的数量进行调整。
      * @param pos
      */
-    public void moveToSubView(int pos) {
-        int hsvPos = 0;
-        switch(maskViewPos) {
+    public void moveToSubView(int pos){
+        int hsvPos = 0;;
+        switch(maskViewPos){
             case RelativeLayout.CENTER_HORIZONTAL:
                 hsvPos = pos - dummySubViewCnt;
                 break;
@@ -130,20 +146,22 @@ public class MyHorizontalPicker extends RelativeLayout {
         }
         hsv.moveToSubView(hsvPos);
     }
+    public void setDummySubViewCnt(int cnt){
+        this.dummySubViewCnt = cnt;
+    }
+    public int getDummySubViewCnt(){
+        return this.dummySubViewCnt;
+    }
 
     /**
      * 初始化。
      * @param itemCnt，hsv视图单屏能够显示的subview的数量
-     * @param maskImageID  mask image的souce id.
-     * @param maskImagePos  mask image的位置，
-     * @param maskBorderWidth  在main页面中，mask为一个边框， 该参数为边框的线条宽度，通过该宽度使得mask包围住iv
-     * @param subViewMargin  subview之间水平间距。
-     * @param msgHandler  消息处理方，如果没有课设置Null
+
      * @param msgWhat， 消息标识. 如果没有消息处理方，可以设置为0
      */
     public void init(int itemCnt, int maskImageID,
                      int maskImagePos, int maskBorderWidth,
-                     int subViewMargin, MsgHandler mMsgHandler, int msgWhat){
+                     int subViewMargin, MsgHandler msgHandler, int msgWhat){
         width = this.getLayoutParams().width;
         height = this.getLayoutParams().height;
         this.subViewMargin = subViewMargin;
@@ -156,25 +174,30 @@ public class MyHorizontalPicker extends RelativeLayout {
         subViewHeight = subViewWidth;
         hsv.setItemWidth(itemWidth);
 
-        hsvParams = new RelativeLayout.LayoutParams( LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        this.addView(hsv, hsvParams);
+        hsvLayoutParams = new RelativeLayout.LayoutParams( LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        this.addView(hsv, hsvLayoutParams);
 
         // 添加mask
         RelativeLayout.LayoutParams ivLayoutParams = new RelativeLayout.LayoutParams( subViewWidth + 2 * maskBorderWidth, subViewHeight + 2 * maskBorderWidth);
         ivLayoutParams.addRule(RelativeLayout.ABOVE, hsv.getId());
         this.maskViewPos = maskImagePos;
         ivLayoutParams.addRule(maskImagePos, RelativeLayout.TRUE);
-        mImageView.setImageDrawable(getResources().getDrawable(maskImageID));
+        imageView.setImageDrawable(getResources().getDrawable(maskImageID));
         ivLayoutParams.setMargins(this.subViewMargin - maskBorderWidth, this.subViewMargin - maskBorderWidth, 0, 0);
 //		ivLayoutParams.setMargins(this.subViewMargin - maskBorderWidth, 0, 0, 0);
-        this.addView(mImageView, ivLayoutParams);
+        this.addView(imageView, ivLayoutParams);
 
-        hsv.setMsgHandler(mMsgHandler);
+        hsv.setMsgHandler(msgHandler);
         hsv.setMsgWhat(msgWhat);
-        this.msgHandler = mMsgHandler;
+        this.msgHandler = msgHandler;
         this.msgWhat = msgWhat;
     }
 
+
+    /**
+     * 通过dummyview的个数来调整当前指定的subview.
+     * @return
+     */
     public int getAdjustedCurrentIndex(){
         switch(maskViewPos){
             case RelativeLayout.CENTER_HORIZONTAL:
@@ -187,7 +210,6 @@ public class MyHorizontalPicker extends RelativeLayout {
                 return 0;
         }
     }
-
     public int getItemWidth() {
         return itemWidth;
     }
@@ -195,7 +217,7 @@ public class MyHorizontalPicker extends RelativeLayout {
         return itemHeight;
     }
     public int getItemCnt(){
-        return hsv.getItemCnt();
+        return hsv.getItemCount();
     }
 
     public void removeAllItemViews(){
@@ -219,6 +241,6 @@ public class MyHorizontalPicker extends RelativeLayout {
     }
 
     public View getSubviewAt(int index){
-        return hsv.getSubviewAt(index);
+        return hsv.getSubViewAt(index);
     }
 }

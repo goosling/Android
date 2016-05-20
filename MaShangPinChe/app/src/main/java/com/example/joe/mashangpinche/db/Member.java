@@ -10,7 +10,7 @@ import org.simpleframework.xml.Root;
  * Created by joe on 2016/4/28.
  */
 @Root(name = "member")
-public class Member {
+public class Member implements Parcelable{
     private static final long serialVersionUID = 1L;
     @Element
     private String id;
