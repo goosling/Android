@@ -3,18 +3,22 @@ package com.example.joe.mashangpinche.activities;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +34,21 @@ import com.example.joe.mashangpinche.R;
 import com.example.joe.mashangpinche.db.Member;
 import com.example.joe.mashangpinche.utils.AppUtil;
 import com.example.joe.mashangpinche.views.MyHorizontalPicker;
+
+import org.apache.http.conn.ConnectTimeoutException;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -351,12 +370,234 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
         }
     }
 
-    public void startCropImage() {
+    private void startCropImage() {
         Intent intent = new Intent(this, CropImage.class);
+        String filePath = portraitFile.getAbsolutePath();
+        Log.d("memberinfo REQUEST_CODE_GALLERY", "selected file path is:"
+                + filePath);
+        intent.putExtra(CropImage.IMAGE_PATH, filePath);
+        intent.putExtra(CropImage.SCALE, true);
+        intent.putExtra(CropImage.ASPECT_X, 1);
+        intent.putExtra(CropImage.ASPECT_Y, 1);
+        intent.putExtra(CropImage.ASPECT_Y, 1);
+        intent.putExtra(CropImage.OUTPUT_X, 256);
+        intent.putExtra(CropImage.OUTPUT_Y, 256);
+        startActivityForResult(intent, REQUEST_CODE_CROP_IMAGE);
+    }
 
+    //两次点击退出程序
+    @Override
+    public void onBackPressed() {
+        //如果main页面调用memberinfo，直接返回
+        ComponentName cn = getCallingActivity();
+        if(null != cn && MainActivity.class.getName().equals(cn.getClassName())) {
+            finish();
+            return;
+        }
+
+        //如果registerstep2调用本页面，两次点击后退出
+        long timeNow = System.currentTimeMillis();
+        long timeOff = timeNow - lastPressedTime;
+
+        if(timeOff < DOUBLE_CLICK_EXIT_INTERVAL) {
+            this.finish();
+        }else {
+            lastPressedTime = timeNow;
+            Toast.makeText(this, R.string.toast_doubleclick_exit,
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void handleMsg(Message msg) {
+        switch (msg.what) {
+            case IwantUApp.MSG_TO_MEMBERINFO_EX_CONN_TIMEOUT:
+                Toast.makeText(getApplicationContext(), R.string.ex_conn_timeout,
+                        Toast.LENGTH_SHORT).show();
+                break;
+            case IwantUApp.MSG_TO_MEMBERINFO_EX_UNKNOWN:
+                Toast.makeText(getApplicationContext(), R.string.ex_unknown,
+                        Toast.LENGTH_SHORT).show();
+                break;
+            case IwantUApp.MSG_TO_MEMBERINFO_UPDATEMEMBER_SUCCESS:
+                Toast.makeText(getApplicationContext(),
+                        R.string.toast_update_member_success, Toast.LENGTH_SHORT)
+                        .show();
 
+                break;
+            case IwantUApp.MSG_TO_MEMBERINFO_UPDATEMEMBER_FAIL:
+                Toast.makeText(getApplicationContext(),
+                        R.string.toast_update_member_fail, Toast.LENGTH_SHORT)
+                        .show();
+                // startIwantActivity();
+                break;
+            case IwantUApp.MSG_TO_MEMBERINFO_LOGIN_FAIL:
+                Toast.makeText(getApplicationContext(),
+                        R.string.toast_need_relogin, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), LoginActivity.class);
+                break;
+            case IwantUApp.MSG_TO_MEMBERINFO_HPICKER_CHANGED:
+                Bundle b = msg.getData();
+                int index = b.getInt(MyHorizontalPicker.MSG_KEY);
+                adjustAgePickerTextSize(index);
+
+                member.setAge(index - AGEPICKER_DUMMY_ITEM_CNT + IwantUApp.CONS_AGE_MIN);
+
+                Log.d("memberinfo handlemsg", "MSG_TO_MEMBERINFO_HPICKER_CHANGED, index is:" +index);
+                break;
+            default:
+        }
+    }
+
+    private void adjustAgePickerTextSize(int index) {
+        TextView tv = (TextView)agePicker.getSubviewAt(index);
+        //typedvalue存放值的地方
+        TypedValue typedValue = new TypedValue();
+        getResources().getValue(R.dimen.memberinfo_hpicker_subview_text_size,
+                typedValue, true);
+        float defaultSize = typedValue.getFloat();
+        tv.setTextSize(defaultSize);
+        for(int i=1; i < AGEPICKER_DUMMY_ITEM_CNT; i++) {
+            tv = (TextView)agePicker.getSubviewAt(index - i);
+            tv.setTextSize((float)(defaultSize * Math.pow(0.8, i)));
+            tv.setGravity(Gravity.CENTER);
+        }
+        for(int i=1; i < AGEPICKER_DUMMY_ITEM_CNT; i++) {
+            tv = (TextView)agePicker.getSubviewAt(index - i);
+            tv.setTextSize((float)(defaultSize * Math.pow(0.8, i)));
+            tv.setGravity(Gravity.CENTER);
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.memberinfo_bt_confirm:
+                //将member写入本地文件
+                app.setMember(member);
+                //更新memberinfo， 无论是否成功，都进入下一个页面
+                new UpdateMemberInfoTask().execute();
+
+                Intent intent = new Intent();
+                intent.putExtra(IwantUApp.ONTOLOGY_MEMBER, (Parcelable)member);
+
+                ComponentName cn = getCallingActivity();
+                if(null != cn) {
+                    if (MainActivity.class.getName().equals(cn.getClassName())) {
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
+                }else {
+                    intent.setClass(MemberInfoActivity.this, IWantActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                }
+                break;
+            case R.id.memberinfo_iv_image:
+                startSelectOpenImageActivity();
+                break;
+        }
+    }
+
+    public void onCheckChanged(RadioGroup radioGroup, int checkedId) {
+        switch(checkedId){
+            case R.id.memberinfo_rb_male:
+                member.setGender(IwantUApp.CONS_GENDER_MALE);
+                break;
+            case R.id.memberinfo_rb_female:
+                member.setGender(IwantUApp.CONS_GENDER_FEMALE);
+                break;
+        }
+    }
+
+    private class UpdateMemberInfoTask extends AsyncTask<MediaType, Void, String> {
+
+        private MultiValueMap<String, Object> formData;
+
+        @Override
+        protected void onPreExecute() {
+            Resource resource;
+
+            if(null == portraitFile) {
+                portraitFile = new File(app.getPortraitFilesDir(),
+                        IwantUApp.CONS_PORTRAIT_DEFAULT_NAME);
+            }
+
+            resource = new FileSystemResource(portraitFile);
+            formData = new LinkedMultiValueMap<>();
+            formData.add("id", member.getId());
+            formData.add("age", Integer.toString(member.getAge()));
+            formData.add("gender", member.getGender());
+            formData.add("file", resource);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if(null == s) {
+                return;
+            }
+
+            try{
+                int responseCode = Integer.parseInt(s, 16);
+                switch(responseCode) {
+                    case IwantUApp.RESPONSE_CODE_UPDATEMEMBER_SUCCESS:
+                        IwantUApp.msgHandler
+                                .sendEmptyMessage(IwantUApp.MSG_TO_MEMBERINFO_UPDATEMEMBER_SUCCESS);
+                        break;
+                    case IwantUApp.RESPONSE_CODE_UPDATEMEMBER_FAIL:
+                        IwantUApp.msgHandler
+                                .sendEmptyMessage(IwantUApp.MSG_TO_MEMBERINFO_UPDATEMEMBER_FAIL);
+                        break;
+                    case IwantUApp.RESPONSE_CODE_LOGIN_FAIL:
+                        IwantUApp.msgHandler
+                                .sendEmptyMessage(IwantUApp.MSG_TO_MEMBERINFO_LOGIN_FAIL);
+                        break;
+                    default:
+                }
+            }catch (Exception e) {
+                IwantUApp.msgHandler
+                        .sendEmptyMessage(IwantUApp.MSG_TO_MEMBERINFO_EX_UNKNOWN);
+                return;
+            }
+        }
+
+        @Override
+        protected String doInBackground(MediaType... params) {
+            final String url = app.getServerBaseURL() + "/updatemember";
+            HttpHeaders requestHeaders = new HttpHeaders();
+            requestHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
+            requestHeaders.set("Connection", "Close");
+
+            HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<MultiValueMap<String, Object>>(
+                    formData, requestHeaders);
+            RestTemplate restTemplate = new RestTemplate(true);
+            restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+            restTemplate.getMessageConverters().add(
+                    new StringHttpMessageConverter());
+            restTemplate.getMessageConverters().add(
+                    new SimpleXmlHttpMessageConverter());
+            ResponseEntity<String> response;
+            try {
+                response = restTemplate.exchange(url, HttpMethod.POST,
+                        requestEntity, String.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+                // 连接服务器超时
+                if (e instanceof ConnectTimeoutException
+                        || e.getCause() instanceof ConnectTimeoutException) {
+                    IwantUApp.msgHandler
+                            .sendEmptyMessage(IwantUApp.MSG_TO_MEMBERINFO_EX_CONN_TIMEOUT);
+                    // 未知错误
+                } else {
+                    IwantUApp.msgHandler
+                            .sendEmptyMessage(IwantUApp.MSG_TO_MEMBERINFO_EX_UNKNOWN);
+                }
+                // 其它异常
+                return null;
+            }
+            return (String) response.getBody();
+        }
     }
 }
