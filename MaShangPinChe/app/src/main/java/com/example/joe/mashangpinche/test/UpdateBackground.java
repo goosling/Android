@@ -4,11 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Environment;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -34,15 +30,7 @@ public class UpdateBackground extends Activity{
     }
 
 
-    //应用安装
-    File file = new File(Environment.getExternalStorageDirectory(), "test.apk");
-    Intent intent = new Intent();
-    //设置意图动作
-    intent.setAction(Intent.ACTION_VIEW);
-    //设置意图数据和类型
-    intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-    //启动安装程序的Activity
-    startActivity(intent);
+
 }
 
 
