@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@mipmap/list_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        
+        <TextView
+            android:id="@+id/tv_titleBar"
+            android:background="@mipmap/title_bar_bg9"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="#FFEAD1AE"
+            android:textSize="@dimen/text_font_size_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ListView
+            android:id="@+id/notes_list"
+            android:cacheColorHint="@null"
+            android:listSelector="@android:color/transparent"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"></ListView>
+        
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_new_note"
+        android:background="@drawable/new_note"
+        android:focusable="false"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+</FrameLayout>
