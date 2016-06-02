@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:id="@+id/navigation_bar"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/selection_menu"
+        android:divider="?android:attr/listDividerAlertDialog"
+        android:singleLine="true"
+        style="?android:attr/borderlessButtonStyle"
+        android:gravity="center_vertical|left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+    
+</LinearLayout>
