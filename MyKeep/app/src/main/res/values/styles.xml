@@ -1,0 +1,55 @@
+<resources>
+
+    <style name="Theme.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/main_bg</item>
+        <item name="colorPrimaryDark">@color/primary_material_light</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowToggle</item>
+    </style>
+
+    <style name="Theme.AppTheme.Main" parent="Theme.AppTheme">
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="AppTheme.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="Theme.AlertDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@drawable/pick_dialog_bg</item>
+    </style>
+
+    <style name="MyActionBarTitleText" parent="Base.TextAppearance.AppCompat">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="LabelEditorIcon">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">12.0dip</item>
+    </style>
+
+    <style name="TabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/pink</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="android:background">@color/main_bg</item>
+        <item name="tabTextAppearance">@style/TabTextAppearance</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+    <style name="TextNormal">
+        <item name="android:textSize">16dip</item>
+        <item name="android:textColor">@color/text_normal</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">left|center_vertical</item>
+    </style>
+
+</resources>
