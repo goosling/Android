@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--使用开源的SVG来设置全局图片-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_select_style"
+        android:title="@string/action_settings"
+        android:icon="@mipmap/ic_settings_input_svideo_white_24dp"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/action_camera"
+        android:title="@string/action_settings"
+        android:icon="@mipmap/ic_camera_alt_white_24dp"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
+
+    <item android:id="@+id/action_add_label"
+        android:title="@string/add_label"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_share_content"
+        android:title="@string/share_content"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_delete_record"
+        android:title="@string/delete_record"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 
 </menu>
