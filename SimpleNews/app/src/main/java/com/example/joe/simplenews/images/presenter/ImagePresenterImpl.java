@@ -1,10 +1,10 @@
 package com.example.joe.simplenews.images.presenter;
 
-import android.widget.ImageView;
 
 import com.example.joe.simplenews.beans.ImageBean;
 import com.example.joe.simplenews.images.model.ImageModel;
 import com.example.joe.simplenews.images.model.ImageModelImpl;
+import com.example.joe.simplenews.images.view.ImageView;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ImagePresenterImpl implements ImagePresenter, ImageModelImpl.OnLoad
 
     @Override
     public void loadImageList() {
-        //mImageView.showProgress();
+        mImageView.showProgress();
         mImageModel.loadImageList(this);
     }
 
