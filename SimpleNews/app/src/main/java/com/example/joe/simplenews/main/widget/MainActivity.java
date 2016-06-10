@@ -16,6 +16,7 @@ import com.example.joe.simplenews.main.presenter.MainPresenter;
 import com.example.joe.simplenews.main.presenter.MainPresenterImpl;
 import com.example.joe.simplenews.main.view.MainView;
 import com.example.joe.simplenews.news.widget.NewsFragment;
+import com.example.joe.simplenews.weather.widget.WeatherFragment;
 
 /**
  * Created by JOE on 2016/6/8.
