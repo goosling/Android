@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/date_text"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:background="?android:colorBackground"
+    android:gravity="left"
+    android:paddingBottom="2.0dip"
+    android:paddingLeft="8.0dip"
+    android:textColor="@color/title_gray"
+    android:textSize="15.0sp"
+    android:textStyle="bold"
+    tools:ignore="RtlHardcoded,RtlSymmetry"/>
