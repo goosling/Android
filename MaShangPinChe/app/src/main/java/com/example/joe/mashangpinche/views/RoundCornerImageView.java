@@ -15,6 +15,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.example.joe.mashangpinche.R;
+
 /**
  * Created by sodiaw on 2016/5/4.
  */

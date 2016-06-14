@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Android\MaShangPinChe\simple-crop-image-lib\src\main\assets"/><source path="C:\Android\MaShangPinChe\simple-crop-image-lib\assets"/></dataSet><dataSet config="release"><source path="C:\Android\MaShangPinChe\simple-crop-image-lib\src\release\assets"/></dataSet></merger>

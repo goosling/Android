@@ -1,0 +1,43 @@
+buildscript {
+  repositories {
+    mavenCentral()
+
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:0.4.+'
+  }
+}
+
+apply plugin: 'android-library'
+
+dependencies {
+}
+
+android {
+  compileSdkVersion 23
+  buildToolsVersion "23.0.3"
+  defaultConfig {
+    minSdkVersion 15
+    targetSdkVersion 23
+  }
+  sourceSets {
+    main {
+      manifest {
+        srcFile 'AndroidManifest.xml'
+      }
+      java {
+        srcDir 'src'
+      }
+      res {
+        srcDir 'res'
+      }
+      assets {
+        srcDir 'assets'
+      }
+      resources {
+        srcDir 'src'
+      }
+    }
+  }
+}

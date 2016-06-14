@@ -38,4 +38,6 @@ dependencies {
     compile files('libs/Android_Location_V1.0.5.jar')
     compile files('libs/spring-android-rest-template-1.0.1.RELEASE.jar')
     compile files('libs/spring-android-core-1.0.1.RELEASE.jar')
+
+    compile project(':simple-crop-image-lib')
 }

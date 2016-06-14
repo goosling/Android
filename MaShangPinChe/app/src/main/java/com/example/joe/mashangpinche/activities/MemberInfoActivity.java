@@ -55,6 +55,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
+import eu.janmuller.android.simplecropimage.CropImage;
+
 /**
  * Created by joe on 2016/4/30.
  */
@@ -330,7 +332,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
                     fileOutputStream.close();
                     inputStream.close();
 
-                    startCropFile();
+                    startCropImage();
                 }catch(Exception e) {
                     Toast.makeText(this, "文件打开失败", Toast.LENGTH_SHORT).show();
                 }
@@ -501,7 +503,7 @@ public class MemberInfoActivity extends Activity implements View.OnClickListener
         }
     }
 
-    public void onCheckChanged(RadioGroup radioGroup, int checkedId) {
+    public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
         switch(checkedId){
             case R.id.memberinfo_rb_male:
                 member.setGender(IwantUApp.CONS_GENDER_MALE);
