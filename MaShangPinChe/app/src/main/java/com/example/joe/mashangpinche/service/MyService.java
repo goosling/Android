@@ -19,7 +19,8 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        TelephonyManager manager = (TelephonyManager)getApplication().getSystemService(TELEPHONY_SERVICE);
+        TelephonyManager manager = (TelephonyManager)getApplication()
+                .getSystemService(TELEPHONY_SERVICE);
         //监听电话状态
         manager.listen(new MyPhoneStateListener(), PhoneStateListener.LISTEN_CALL_STATE);
     }

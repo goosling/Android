@@ -11,6 +11,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.SeekBar;
 
+import com.example.joe.mashangpinche.R;
+
 /**
  * Created by joe on 2016/4/26.
  */
