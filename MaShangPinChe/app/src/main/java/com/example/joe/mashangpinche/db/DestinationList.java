@@ -10,7 +10,7 @@ import java.util.List;
  * Created by JOE on 2016/5/22.
  */
 @Root(name = "destList")
-public class DestinatonList implements Serializable {
+public class DestinationList implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ElementList(inline = true, required = false, entry = "destination")

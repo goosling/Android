@@ -1,11 +1,17 @@
 package com.example.joe.mashangpinche.views;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 
+import com.example.joe.mashangpinche.activities.IwantUApp;
 import com.example.joe.mashangpinche.activities.MainActivity;
 
 import java.lang.reflect.Field;
@@ -95,6 +101,75 @@ public class SpecialHorizontalScrollView extends ScrollView {
     }
 
     public  int adjustX(int currentX) {
+        currentTaIndex = currentX / itemWidth;
+        int item_residual = currentX % itemWidth;
+        if(item_residual >= itemWidth / 2) {
+            currentTaIndex += 1;
+        }
 
+        int adjustedX = currentTaIndex * itemWidth;
+        scrollTo(adjustedX, 0);
+
+        Bundle b = new Bundle();
+        b.putInt("taIndex", currentTaIndex - 1);
+        Message msg = new Message();
+        msg.setData(b);
+        msg.what = IwantUApp.MSG_TO_MAIN_HPICKER_CHANGED;
+        IwantUApp.msgHandler.sendMessage(msg);
+
+        return adjustedX;
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        int action = ev.getAction();
+        if(action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+            int currentX = getScrollX();
+            adjustX(currentX);
+            currentlyTouching = false;
+        }
+        return super.onTouchEvent(ev);
+    }
+
+    private void initScroller() {
+        try{
+            mScrollerField = HorizontalScrollView.class.getDeclaredField("mScroller");
+            mScrollerField.setAccessible(true);
+
+            mScroller = new SpecialScroller();
+
+            DecelerateInterpolator dip = new DecelerateInterpolator(1);
+
+            mScroller.create(getContext(), dip);
+            try{
+                mScrollerField.set(this, mScroller.getScroller());
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    public int getCurrent_item_index() {
+        return currentTaIndex;
+    }
+
+    public void setCurrent_item_index(int current_item_index) {
+        this.currentTaIndex = current_item_index;
+    }
+
+    public int getCurrent_TA_index() {
+        return currentTaIndex;
+    }
+
+    public void setCurrent_TA_index(int current_TA_index) {
+        this.currentTaIndex = current_TA_index;
+    }
+
 }

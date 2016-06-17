@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/feedback_actionbar_send"
+        app:showAsAction="ifRoom|withText"
+        android:icon="@mipmap/ic_action_send_now"
+        android:titleCondensed="发送"
+        android:title="@string/feedback_actionbar_send_title"/>
+</menu>
