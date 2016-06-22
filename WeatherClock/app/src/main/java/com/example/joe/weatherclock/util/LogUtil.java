@@ -7,12 +7,27 @@ import android.util.Log;
  */
 public class LogUtil {
 
+    private static LogUtil sLogUtil;
+
     private static final int VERBOSE = 1;
     private static final int DEBUG = 2;
     private static final int INFO = 3;
     private static final int WARN = 4;
     private static final int ERROR = 5;
     private static final int NOTHING = 6;
+
+    private LogUtil() {}
+
+    public static LogUtil getInstance() {
+        if(sLogUtil == null) {
+            synchronized (LogUtil.class) {
+                if(sLogUtil == null) {
+                    sLogUtil = new LogUtil();
+                }
+            }
+        }
+        return sLogUtil;
+    }
 
     public static void v(String tag, String msg) {
         if(NOTHING > VERBOSE) {

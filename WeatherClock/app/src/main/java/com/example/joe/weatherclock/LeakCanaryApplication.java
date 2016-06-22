@@ -34,37 +34,37 @@ public class LeakCanaryApplication extends LitePalApplication {
         this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-                LogUtil.v("=========", activity + "  onActivityCreated");
+                LogUtil.getInstance().v("=========", activity + "  onActivityCreated");
             }
 
             @Override
             public void onActivityStarted(Activity activity) {
-                LogUtil.v("=========", activity + "  onActivityStarted");
+                LogUtil.getInstance().v("=========", activity + "  onActivityStarted");
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
-                LogUtil.v("=========", activity + "  onActivityResumed");
+                LogUtil.getInstance().v("=========", activity + "  onActivityResumed");
             }
 
             @Override
             public void onActivityPaused(Activity activity) {
-                LogUtil.v("=========", activity + "  onActivityPaused");
+                LogUtil.getInstance().v("=========", activity + "  onActivityPaused");
             }
 
             @Override
             public void onActivityStopped(Activity activity) {
-                LogUtil.v("=========", activity + "  onActivityStopped");
+                LogUtil.getInstance().v("=========", activity + "  onActivityStopped");
             }
 
             @Override
             public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-                LogUtil.v("=========", activity + "  onActivitySaveInstanceState");
+                LogUtil.getInstance().v("=========", activity + "  onActivitySaveInstanceState");
             }
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-                LogUtil.v("=========", activity + "  onActivityDestroyed");
+                LogUtil.getInstance().v("=========", activity + "  onActivityDestroyed");
             }
         });
     }
