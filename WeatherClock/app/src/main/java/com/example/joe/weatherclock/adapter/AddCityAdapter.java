@@ -1,6 +1,7 @@
 package com.example.joe.weatherclock.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,24 @@ public class AddCityAdapter extends ArrayAdapter<String> {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.gv_add_city
                 , parent, false);
             viewHolder = new ViewHolder();
-            
+            viewHolder.cityName = (TextView)convertView.findViewById(R.id.city_name);
+            convertView.setTag(viewHolder);
+        }else {
+            viewHolder = (ViewHolder)convertView.getTag();
         }
-        return super.getView(position, convertView, parent);
+
+        if(cityName.equals("定位")) {
+            Drawable drawable = getContext().getResources().getDrawable(R.drawable.ic_gps);
+            if(drawable != null) {
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            }
+            viewHolder.cityName.setCompoundDrawables(drawable, null, null, null);
+        }else {
+            viewHolder.cityName.setCompoundDrawables(null, null, null, null);
+        }
+
+        viewHolder.cityName.setText(cityName);
+        return convertView;
     }
 
     //保存控件实例

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
+    android:orientation="vertical"
+    tools:context="com.example.joe.weatherclock.activities.AboutActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout style="@style/action_llyt">
+        
+        <ImageView
+            android:id="@+id/action_back"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_action_previous_item"
+            style="@style/action_icon" />
+
+        <TextView
+            android:id="@+id/action_title"
+            android:text="@string/abort"
+            style="@style/action_title" />
+        
+    </RelativeLayout>
+
+    <include layout="@layout/layout_logo_weac" />
+
+</RelativeLayout>
