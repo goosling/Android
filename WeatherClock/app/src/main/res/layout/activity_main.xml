@@ -1,25 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<FrameLayout
+    android:id="@+id/llyt_activity_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="54dp"/>
 
-        <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="bottom"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-    </android.support.design.widget.AppBarLayout>
+        <LinearLayout
+            android:id="@+id/tab_alarm_clock"
+            style="@style/tab_llyt">
 
-    <include layout="@layout/content_main" />
+            <TextView
+                android:id="@+id/tv_alarm_clock"
+                style="@style/tab_tv"
+                android:text="@string/alarm_clock"/>
+        </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        <LinearLayout
+            android:id="@+id/tab_wea"
+            style="@style/tab_llyt">
 
-</android.support.design.widget.CoordinatorLayout>
+            <TextView
+                android:id="@+id/tv_wea"
+                style="@style/tab_tv"
+                android:text="@string/wea"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_time"
+            style="@style/tab_llyt">
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/tab_tv"
+                android:text="@string/time"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/tab_more"
+            style="@style/tab_llyt">
+
+            <TextView
+                android:id="@+id/tv_more"
+                style="@style/tab_tv"
+                android:text="@string/more"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
