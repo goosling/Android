@@ -6,14 +6,14 @@ import android.widget.AdapterView;
 /**
  * Created by JOE on 2016/6/28.
  */
-public class AlarmClockAdapter extends RecyclerView.Adapter<>{
+public class AlarmClockAdapter extends RecyclerView.Adapter<AlarmClockAdapter.MyViewHolder>{
 
 
     /**
      * 保存控件实例
      */
     class MyViewHolder extends RecyclerView.ViewHolder {
-        MaterialRippleLayout
+        public MyViewHolder() {}
     }
 
 }
