@@ -35,6 +35,8 @@ public class ImageItem implements Parcelable {
         dest.writeString(this.imagePath);
     }
 
+    public ImageItem() {}
+
     private ImageItem(Parcel in) {
         this.imageId = in.readString();
         this.imagePath = in.readString();
