@@ -36,7 +36,8 @@ public class AlarmClockAdapter extends RecyclerView.Adapter<AlarmClockAdapter.My
             time = (TextView)itemView.findViewById(R.id.tv_time);
             repeat = (TextView)itemView.findViewById(R.id.tv_repeat);
             tag = (TextView)itemView.findViewById(R.id.tv_tag);
-            tglBtn = (ToggleButton)
+            tglBtn = (ToggleButton)itemView.findViewById(R.id.toggle_btn);
+            deleteBtn = (ImageView) itemView.findViewById(R.id.alarm_list_delete_btn);
         }
 
     }
