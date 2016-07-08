@@ -2,13 +2,19 @@ package com.example.joe.weatherclock.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.example.joe.weatherclock.Listener.OnItemClickListener;
 import com.example.joe.weatherclock.R;
 import com.example.joe.weatherclock.bean.AlarmClock;
+import com.example.joe.weatherclock.bean.Event.AlarmClockDeleteEvent;
+import com.example.joe.weatherclock.db.AlarmClockOperate;
+import com.example.joe.weatherclock.util.OttoAppConfig;
 
 import java.util.List;
 
@@ -50,7 +56,69 @@ public class AlarmClockAdapter extends RecyclerView.Adapter<AlarmClockAdapter.My
         mWhiteTrans = mContext.getResources().getColor(R.color.white_trans30);
     }
 
-    
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new MyViewHolder(LayoutInflater.from(mContext).inflate(
+                R.layout.lv_alarm_clock, parent, false
+        ));
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
+    }
+
+    @Override
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        final AlarmClock alarmClock = mList.get(position);
+
+        if(mOnItemClickListener != null) {
+            holder.rippleView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isCanClick) {
+                        mOnItemClickListener.onItemClick(holder.itemView, holder.getLayoutPosition());
+                    }
+                }
+            });
+
+            holder.rippleView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (isCanClick) {
+                        mOnItemClickListener.onItemLongClick(holder.itemView, holder.getLayoutPosition());
+                        return false;
+                    }
+                    return true;
+                }
+            });
+        }
+
+        if(alarmClock.isOnOff()) {
+            holder.time.setTextColor(mWhite);
+            holder.repeat.setTextColor(mWhite);
+            holder.tag.setTextColor(mWhite);
+        }else {
+            holder.time.setTextColor(mWhiteTrans);
+            holder.repeat.setTextColor(mWhiteTrans);
+            holder.tag.setTextColor(mWhiteTrans);
+        }
+
+        //显示删除按钮
+        if(mIsDisplayDeleteBtn) {
+            holder.deleteBtn.setVisibility(View.VISIBLE);
+            holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlarmClockOperate.getInstance().deleteAlarmClock(alarmClock);
+                    OttoAppConfig.getInstance().post(new AlarmClockDeleteEvent(holder.getAdapterPosition(), alarmClock));
+
+
+                }
+            });
+        }
+    }
 
     /**
      * 保存控件实例
