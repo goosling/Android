@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.SystemClock;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
@@ -22,6 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
+import java.util.Calendar;
 
 /**
  * Created by JOE on 2016/7/8.
@@ -448,7 +450,59 @@ public class MyUtil {
         am.cancel(pi);
     }
 
+    /**
+     * 开启倒计时
+     *
+     * @param context    context
+     * @param timeRemain 剩余时间
+     */
+    public static void startClockTimer(Context context, long timeRemain) {
+        Intent intent = new Intent(context, TimerOnTimeActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(context, 1000, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        long countdownTime = timeRemain + SystemClock.elapsedRealtime();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP, countdownTime, pi);
+        }else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, countdownTime, pi);
+        }
+    }
 
+    /**
+     * 取得下次响铃时间
+     *
+     * @param hour   小时
+     * @param minute 分钟
+     * @param weeks  周
+     * @return 下次响铃时间
+     */
+    public static long calculateNextTime(int hour, int minute, String weeks) {
+        long now = System.currentTimeMillis();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(now);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        long nextTime = calendar.getTimeInMillis();
+        //当单次响铃时
+        if(weeks == null) {
+            //当设置时间大于系统时间时
+            if(nextTime > now) {
+                return nextTime;
+            }else {
+                //设置时间加一天
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                nextTime = calendar.getTimeInMillis();
+                return nextTime;
+            }
+        }else {
+            nextTime = 0;
+            
+        }
+    }
 
 }
 
