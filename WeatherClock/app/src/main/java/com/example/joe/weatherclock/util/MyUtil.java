@@ -10,8 +10,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
@@ -23,6 +26,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 /**
@@ -500,9 +504,162 @@ public class MyUtil {
             }
         }else {
             nextTime = 0;
-            
+            //临时比较用响铃时间
+            long tempTime;
+
+            final String[] weeksValue = weeks.split(",");
+            for(String aWeeksValue: weeksValue) {
+                int week = Integer.parseInt(aWeeksValue);
+                //设置重复的周
+                calendar.set(Calendar.DAY_OF_WEEK, week);
+                tempTime = calendar.getTimeInMillis();
+                if(tempTime <= now) {
+                    //设置时间加7天
+                    tempTime += AlarmManager.INTERVAL_DAY * 7;
+                }
+                if(nextTime == 0) {
+                    nextTime = tempTime;
+                }else {
+                    nextTime = Math.min(tempTime, nextTime);
+                }
+            }
+        }
+        return nextTime;
+    }
+
+    /**
+     * 转换文件大小
+     *
+     * @param fileLength file
+     * @param pattern    匹配模板 "#.00","0.0"...
+     * @return 格式化后的大小
+     */
+    public static String formatFileSize(long fileLength, String pattern) {
+        DecimalFormat df = new DecimalFormat(pattern);
+        String fileSizeString;
+        if(fileLength < 1024) {
+            fileSizeString = "0KB";
+        } else if(fileLength < 1048576) {
+            fileSizeString = df.format((double)fileLength / 1024) + "KB";
+        }else if (fileLength < 1073741824) {
+            fileSizeString = df.format((double) fileLength / 1048576) + "MB";
+        } else {
+            fileSizeString = df.format((double) fileLength / 1073741824) + "G";
+        }
+        return fileSizeString;
+    }
+
+    public static String formatFileDuration(int ms) {
+        // 单位秒
+        int ss = 1000;
+        // 单位分
+        int mm = ss * 60;
+
+        // 剩余分钟
+        int remainMinute = ms / mm;
+        // 剩余秒
+        int remainSecond = (ms - remainMinute * mm) / ss;
+
+        return addZero(remainMinute) + ":"
+                + addZero(remainSecond);
+
+    }
+
+    /**
+     * 格式化时间
+     *
+     * @param hour   小时
+     * @param minute 分钟
+     * @return 格式化后的时间:[xx:xx]
+     */
+    public static String formatTime(int hour, int minute) {
+        return addZero(hour) + ":" + addZero(minute);
+    }
+
+    /**
+     * 时间补零
+     *
+     * @param time 需要补零的时间
+     * @return 补零后的时间
+     */
+    public static String addZero(int time) {
+        if (String.valueOf(time).length() == 1) {
+            return "0" + time;
+        }
+
+        return String.valueOf(time);
+    }
+
+    /**
+     * 振动单次100毫秒
+     *
+     * @param context context
+     */
+    public static void vibrate(Context context) {
+        Vibrator vibrator = (Vibrator) context
+                .getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(100);
+    }
+
+    /**
+     * 去掉文件扩展名
+     *
+     * @param fileName 文件名
+     * @return 没有扩展名的文件名
+     */
+    public static String removeEx(String fileName) {
+        if ((fileName != null) && (fileName.length() > 0)) {
+            int dot = fileName.lastIndexOf('.');
+            if ((dot > -1) && (dot < fileName.length())) {
+                return fileName.substring(0, dot);
+            }
+        }
+        return fileName;
+    }
+
+    /**
+     * 检查当前网络是否可用
+     *
+     * @param context context
+     * @return 是否连接到网络
+     */
+    public static boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context
+                .getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (connectivityManager != null) {
+            NetworkInfo info = connectivityManager.getActiveNetworkInfo();
+            if (info != null && info.isConnected()) {
+                if (info.getState() == NetworkInfo.State.CONNECTED) {
+
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static long mLastClickTime = 0;             // 按钮最后一次点击时间
+    private static final int SPACE_TIME = 500;          // 空闲时间
+
+    /**
+     * 是否连续点击按钮多次
+     *
+     * @return 是否快速多次点击
+     */
+    public static boolean isFastDoubleClick() {
+        long time = SystemClock.elapsedRealtime();
+        if (time - mLastClickTime <= SPACE_TIME) {
+            return true;
+        } else {
+            mLastClickTime = time;
+            return false;
         }
     }
+
+    
+
 
 }
 
