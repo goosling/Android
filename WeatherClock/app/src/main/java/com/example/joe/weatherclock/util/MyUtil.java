@@ -6,6 +6,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -31,6 +34,8 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by JOE on 2016/7/8.
@@ -928,7 +933,7 @@ public class MyUtil {
      *
      * @param context  context
      * @param uri      image path uri
-     * @param filePath save path (e.g.: "/AppDir/a.mp3", "/AppDir/files/images/a.jpg")
+     * @param filepath save path (e.g.: "/AppDir/a.mp3", "/AppDir/files/images/a.jpg")
      * @param type     0，截取壁纸/拍照；1，截取Logo
      * @return Intent
      */
@@ -966,6 +971,99 @@ public class MyUtil {
         // 是否将数据保留在Bitmap中返回
         intent.putExtra("return-data", false);
         return intent;
+    }
+
+    /**
+     * 网址验证
+     *
+     * @param url 需要验证的内容
+     */
+    public static boolean checkWebsite(String url) {
+        String format = "(http|ftp|https):\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+" +
+                "([\\w\\-\\.,@?^=%&;:/~\\+#]*[\\w\\-\\@?^=%&;/~\\+#])?";
+
+        return startCheck(format, url);
+    }
+
+    /**
+     * 网址路径（无协议部分）验证
+     *
+     * @param url 需要验证的路径
+     */
+    public static boolean checkWebSitePath(String url) {
+        String format = "[\\w\\-_]+(\\.[\\w\\-_]+)+" +
+                "([\\w\\-\\.,@?^=%&;:/~\\+#]*[\\w\\-\\@?^=%&;/~\\+#])?";
+        return startCheck(format, url);
+    }
+
+    /**
+     * 匹配正则表达式
+     *
+     * @param format 匹配格式
+     * @param str    匹配内容
+     * @return 是否匹配成功
+     */
+    private static boolean startCheck(String format, String str) {
+        boolean tem;
+        Pattern pattern = Pattern.compile(format);
+        Matcher matcher = pattern.matcher(str);
+
+        tem = matcher.matches();
+        return tem;
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    public static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    public static float dp2px(Resources resources, float dp) {
+        final float scale = resources.getDisplayMetrics().density;
+        return dp * scale + 0.5f;
+    }
+
+    public static float sp2px(Resources resources, float sp) {
+        final float scale = resources.getDisplayMetrics().scaledDensity;
+        return sp * scale;
+    }
+
+    /**
+     * 保存自定义二维码logo地址
+     */
+    public static void saveQRcodeLogoPath(Context context, String logoPath) {
+        SharedPreferences share = context.getSharedPreferences(
+                WeacConstants.EXTRA_WEAC_SHARE, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor edit = share.edit();
+        edit.putString(WeacConstants.QRCODE_LOGO_PATH, logoPath);
+        edit.apply();
+    }
+
+    public static void startActivity(Context context, Class<?> cls) {
+        Intent intent = new Intent(context, cls);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 获取应用版本号
+     *
+     * @param context context
+     * @return 版本号
+     */
+    public static String getVersion(Context context) {
+        String version;
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            // getPackageName()是你当前类的包名，0代表是获取版本信息
+            PackageInfo packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+            version = packInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            LogUtil.e(TAG, "assignViews: " + e.toString());
+            version = context.getString(R.string.version);
+        }
+        return version;
     }
 
 }
